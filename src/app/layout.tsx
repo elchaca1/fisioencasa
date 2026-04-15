@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fisioterapeuta a Domicilio en Lima | Dolor Lumbar | FisioVida",
+  title: "Fisioterapeuta a Domicilio en Lima | Dolor Lumbar | FisioEnCasa",
   description:
     "Fisioterapeuta a domicilio en Lima. Tratamiento de dolor lumbar, hernias discales, corrección postural y rehabilitación deportiva. Agenda tu cita hoy.",
   keywords: [
@@ -26,22 +26,22 @@ export const metadata: Metadata = {
     "terapia física Lima",
     "hernia discal tratamiento Lima",
   ],
-  authors: [{ name: "FisioVida" }],
+  authors: [{ name: "FisioEnCasa" }],
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Fisioterapeuta a Domicilio en Lima | FisioVida",
+    title: "Fisioterapeuta a Domicilio en Lima | FisioEnCasa",
     description:
       "Recupera tu movilidad sin salir de casa. Tratamiento profesional de dolor lumbar, hernias discales y corrección postural a domicilio en Lima.",
-    url: "https://fisiovida.pe",
-    siteName: "FisioVida",
+    url: "https://fisioencasa.pe",
+    siteName: "FisioEnCasa",
     type: "website",
     locale: "es_PE",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fisioterapeuta a Domicilio en Lima | FisioVida",
+    title: "Fisioterapeuta a Domicilio en Lima | FisioEnCasa",
     description:
       "Recupera tu movilidad sin salir de casa. Fisioterapia profesional a domicilio en Lima.",
   },

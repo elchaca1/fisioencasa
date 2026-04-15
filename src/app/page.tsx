@@ -57,7 +57,7 @@ import {
   SheetClose,
 } from '@/components/ui/sheet'
 
-const WHATSAPP_NUMBER = '51999888777'
+const WHATSAPP_NUMBER = '51954670730'
 const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
 function openWhatsApp(message: string) {
@@ -118,7 +118,7 @@ function Header() {
           <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
             <Heart className="size-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-primary">FisioVida</span>
+          <span className="text-xl font-bold text-primary">FisioEnCasa</span>
         </a>
 
         {/* Desktop Nav */}
@@ -164,7 +164,7 @@ function Header() {
                 <div className="flex size-8 items-center justify-center rounded-lg bg-primary">
                   <Heart className="size-4 text-white" />
                 </div>
-                <span className="text-lg font-bold text-primary">FisioVida</span>
+                <span className="text-lg font-bold text-primary">FisioEnCasa</span>
               </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4 pt-4" aria-label="Navegación móvil">
@@ -861,7 +861,7 @@ function AppointmentSection() {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="Ej: 999 888 777"
+                      placeholder="Ej: 954 670 730"
                       required
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -969,7 +969,7 @@ function Footer() {
               <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
                 <Heart className="size-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">FisioVida</span>
+              <span className="text-xl font-bold text-white">FisioEnCasa</span>
             </div>
             <p className="text-sm leading-relaxed">
               Fisioterapia profesional a domicilio en Lima. Recupera tu movilidad y calidad de
@@ -1027,8 +1027,8 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
-                <a href="tel:+51999888777" className="text-sm hover:text-white transition-colors">
-                  +51 999 888 777
+                <a href="tel:+51954670730" className="text-sm hover:text-white transition-colors">
+                  +51 954 670 730
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -1066,7 +1066,7 @@ function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-gray-400">
-            © {new Date().getFullYear()} FisioVida. Todos los derechos reservados.
+            © {new Date().getFullYear()} FisioEnCasa. Todos los derechos reservados.
           </p>
           <p className="text-sm text-gray-400">
             Hecho con <Heart className="inline size-3 text-red-400" /> en Lima, Perú
@@ -1097,7 +1097,7 @@ function FloatingWhatsApp() {
 /* ═══════════════════════════════════════════════════
    MAIN PAGE
    ═══════════════════════════════════════════════════ */
-export default function FisioVidaPage() {
+export default function FisioEnCasaPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
