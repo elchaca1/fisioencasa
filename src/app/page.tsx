@@ -341,16 +341,14 @@ function AboutSection() {
           {/* Left — Avatar + visual */}
           <AnimatedSection>
             <div className="relative mx-auto max-w-sm lg:max-w-none">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-blue-50 to-primary/5 p-6 sm:p-8 flex items-center justify-center">
-                <div className="size-40 sm:size-48 lg:size-56 relative rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20">
-                  <Image
-                    src="/foto-perfil.png"
-                    alt="Fisioterapeuta FisioEnCasa — Foto de perfil profesional"
-                    fill
-                    className="object-cover object-top"
-                    priority
-                  />
-                </div>
+              <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/foto-perfil.png"
+                  alt="Fisioterapeuta FisioEnCasa — Foto de perfil profesional"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
               </div>
               {/* Floating badge */}
               <div className="absolute -bottom-4 -right-2 sm:right-4 rounded-xl bg-white p-3 sm:p-4 shadow-lg border">
