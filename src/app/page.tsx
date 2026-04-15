@@ -351,7 +351,7 @@ function HeroSection() {
               {/* Image */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
                 <Image
-                  src="/hero-fisioterapia.png"
+                  src="/hero-fisio-home.png"
                   alt="Fisioterapeuta atendiendo a domicilio en Lima"
                   width={1344}
                   height={768}
