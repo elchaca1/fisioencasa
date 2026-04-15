@@ -298,7 +298,7 @@ function HeroSection() {
                 <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
                   <Award className="size-4 text-yellow-300" />
                 </div>
-                <span className="text-sm font-medium text-blue-100">+10 años a domicilio</span>
+                <span className="text-sm font-medium text-blue-100">+2 años a domicilio</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
@@ -356,7 +356,7 @@ function HeroSection() {
                   <span className="text-sm font-bold text-foreground">4.9</span>
                   <span className="text-xs text-muted-foreground">/ 5</span>
                 </div>
-                <p className="mt-1 text-xs text-muted-foreground">+2,000 pacientes satisfechos</p>
+                <p className="mt-1 text-xs text-muted-foreground">+1,000 pacientes satisfechos</p>
               </motion.div>
 
               {/* Floating card — home visit */}
@@ -394,9 +394,9 @@ function HeroSection() {
    ═══════════════════════════════════════════════════ */
 function AboutSection() {
   const stats = [
-    { icon: Award, value: '10+', label: 'Años de experiencia' },
-    { icon: Users, value: '2,000+', label: 'Pacientes atendidos' },
-    { icon: CheckCircle, value: '5', label: 'Certificaciones' },
+    { icon: Award, value: '2+', label: 'Años de experiencia' },
+    { icon: Users, value: '1,000+', label: 'Pacientes atendidos' },
+    { icon: CheckCircle, value: 'Neuro', label: 'Especialización' },
     { icon: Star, value: '4.9', label: 'Calificación promedio' },
   ]
 
@@ -424,7 +424,7 @@ function AboutSection() {
                   </div>
                   <div>
                     <p className="text-xs sm:text-sm font-semibold">Colegiado CPP</p>
-                    <p className="text-xs text-muted-foreground">Habilitado 2025</p>
+                    <p className="text-xs text-muted-foreground">Habilitado 2026</p>
                   </div>
                 </div>
               </div>
@@ -450,22 +450,23 @@ function AboutSection() {
               Tu fisioterapeuta a domicilio en Lima
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Soy fisioterapeuta colegado con más de 10 años de experiencia llevando
-              rehabilitación profesional directamente a tu hogar. Mi especialidad es la
-              terapia a domicilio: llego a tu casa con todo el equipamiento necesario para
-              que recuperes tu movilidad sin la molestia de trasladarte a una clínica.
+              Soy fisioterapeuta colegiado con más de 2 años de experiencia atendiendo
+              lesiones musculoesqueléticas y neurológicas. Actualmente curso la especialización
+              en neurorehabilitación, lo que me permite ofrecer un enfoque integral y actualizado
+              para cada paciente. Mi compromiso es llevar la rehabilitación profesional
+              directamente a tu hogar con todo el equipamiento necesario.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              He atendido a más de 2,000 pacientes en Lima, desde profesionales con dolor
-              por trabajo en oficina hasta deportistas en recuperación. Cada tratamiento es
-              único porque cada persona lo es — y hacerlo en tu casa hace que la recuperación
-              sea más cómoda, rápida y efectiva.
+              He atendido a más de 1,000 pacientes en Lima, desde personas con lesiones
+              musculoesqueléticas hasta pacientes con condiciones neurológicas que requieren
+              rehabilitación especializada. Cada tratamiento es único porque cada persona lo es
+              — y hacerlo en tu casa hace que la recuperación sea más cómoda, rápida y efectiva.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                'Especialista en rehabilitación a domicilio',
-                'Certificado en terapia manual ortopédica',
-                'Formación en salud ocupacional y ergonomía',
+                'Atención de lesiones musculoesqueléticas',
+                'Especialización en neurorehabilitación',
+                'Tratamiento de patologías neurológicas',
                 'Equipamiento completo para atención en casa',
                 'Cobertura en todos los distritos de Lima',
               ].map((item) => (
