@@ -1156,8 +1156,8 @@ function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-                <a href="mailto:contacto@fisiovida.pe" className="text-sm hover:text-white transition-colors">
-                  contacto@fisiovida.pe
+                <a href="mailto:contacto@fisioencasa.pe" className="text-sm hover:text-white transition-colors">
+                  contacto@fisioencasa.pe
                 </a>
               </li>
               <li className="flex items-start gap-3">
