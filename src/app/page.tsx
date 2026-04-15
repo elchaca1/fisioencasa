@@ -352,7 +352,7 @@ function HeroSection() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/hero-fisio-v3.png"
+                  src="/hero-fisio-v4.png"
                   alt="Fisioterapeuta atendiendo a una paciente a domicilio en Lima"
                   className="w-full h-auto object-cover"
                   loading="eager"
