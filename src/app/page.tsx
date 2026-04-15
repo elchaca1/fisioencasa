@@ -113,7 +113,6 @@ const NAV_LINKS = [
   { href: '#servicios', label: 'Servicios' },
   { href: '#como-funciona', label: 'Cómo Funciona' },
   { href: '#testimonios', label: 'Testimonios' },
-  { href: '#contacto', label: 'Contacto' },
 ]
 
 /* ═══════════════════════════════════════════════════
@@ -153,18 +152,12 @@ function Header() {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <Button
-            onClick={() => openWhatsApp('Hola, me gustaría agendar una cita')}
+            onClick={() => openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}
             className="bg-green-600 hover:bg-green-700 text-white"
           >
             <MessageCircle className="size-4" />
-            WhatsApp
+            Agenda por WhatsApp
           </Button>
-          <a href="#contacto">
-            <Button>
-              <Calendar className="size-4" />
-              Agenda tu Cita
-            </Button>
-          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -202,21 +195,13 @@ function Header() {
                 <Button
                   onClick={() => {
                     handleNavClick()
-                    openWhatsApp('Hola, me gustaría agendar una cita')
+                    openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')
                   }}
                   className="w-full bg-green-600 hover:bg-green-700 text-white"
                 >
                   <MessageCircle className="size-4" />
-                  WhatsApp
+                  Agenda por WhatsApp
                 </Button>
-              </SheetClose>
-              <SheetClose asChild>
-                <a href="#contacto" onClick={handleNavClick}>
-                  <Button className="w-full">
-                    <Calendar className="size-4" />
-                    Agenda tu Cita
-                  </Button>
-                </a>
               </SheetClose>
             </div>
           </SheetContent>
@@ -290,21 +275,15 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 flex flex-col gap-4 sm:flex-row"
+              className="mt-8"
             >
-              <a href="#contacto">
-                <Button size="lg" className="w-full bg-white text-primary hover:bg-blue-50 font-semibold text-base px-8 h-13 sm:w-auto shadow-lg shadow-white/20">
-                  <Calendar className="size-5 mr-1" />
-                  Agenda tu Cita
-                </Button>
-              </a>
               <Button
                 size="lg"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-13 sm:w-auto shadow-lg shadow-green-600/20"
                 onClick={() => openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}
               >
                 <MessageCircle className="size-5 mr-1" />
-                Escríbeme por WhatsApp
+                Agenda por WhatsApp
               </Button>
             </motion.div>
 
@@ -898,24 +877,15 @@ function CTASection() {
                   Cupos limitados — solo 10 citas con descuento este mes
                 </span>
               </div>
-              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <div className="mt-8 flex items-center justify-center">
                 <Button
                   size="lg"
-                  className="bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-12 w-full sm:w-auto"
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-12"
                   onClick={() => openWhatsApp('Hola, quiero agendar una cita con el descuento del 20%')}
                 >
                   <MessageCircle className="size-5 mr-1" />
-                  Escríbeme por WhatsApp
+                  Agenda por WhatsApp
                 </Button>
-                <a href="#contacto">
-                  <Button
-                    size="lg"
-                    className="bg-white text-primary hover:bg-blue-50 font-semibold text-base px-8 h-12 w-full sm:w-auto"
-                  >
-                    <Calendar className="size-5 mr-1" />
-                    Agenda tu Cita
-                  </Button>
-                </a>
               </div>
             </div>
           </div>
@@ -925,158 +895,7 @@ function CTASection() {
   )
 }
 
-/* ═══════════════════════════════════════════════════
-   9. SISTEMA DE CITAS (APPOINTMENT BOOKING)
-   ═══════════════════════════════════════════════════ */
-function AppointmentSection() {
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    date: '',
-    service: '',
-    message: '',
-  })
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    const msg = `Hola, me gustaría agendar una cita:
-📌 Nombre: ${form.name}
-📞 Teléfono: ${form.phone}
-📧 Email: ${form.email}
-📅 Fecha preferida: ${form.date}
-🏥 Servicio: ${form.service}
-💬 Mensaje: ${form.message}`
-    openWhatsApp(msg)
-  }
-
-  return (
-    <section id="contacto" className="py-16 sm:py-24 bg-blue-50/50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center">
-          <Badge variant="secondary" className="mb-4">Agenda tu Cita</Badge>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Empieza tu recuperación hoy
-          </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
-            Completa el formulario y te contactaremos para confirmar tu cita.
-            También puedes escribirnos directamente por WhatsApp.
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection delay={0.2}>
-          <Card className="mx-auto mt-12 max-w-2xl border-none shadow-lg">
-            <CardContent className="pt-6">
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nombre completo *</Label>
-                    <Input
-                      id="name"
-                      placeholder="Ej: María García"
-                      required
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Teléfono / Celular *</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="Ej: 954 670 730"
-                      required
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Correo electrónico</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Ej: maria@correo.com"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="date">Fecha preferida</Label>
-                    <Input
-                      id="date"
-                      type="date"
-                      value={form.date}
-                      onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="service">Tipo de servicio *</Label>
-                  <Select
-                    value={form.service}
-                    onValueChange={(val) => setForm({ ...form, service: val })}
-                    required
-                  >
-                    <SelectTrigger id="service" className="w-full">
-                      <SelectValue placeholder="Selecciona un servicio" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="dolor-lumbar">Tratamiento de Dolor Lumbar</SelectItem>
-                      <SelectItem value="correccion-postural">Corrección Postural</SelectItem>
-                      <SelectItem value="rehabilitacion-deportiva">Rehabilitación Deportiva</SelectItem>
-                      <SelectItem value="terapia-domicilio">Terapia a Domicilio</SelectItem>
-                      <SelectItem value="hernia-discar">Tratamiento de Hernia Discal</SelectItem>
-                      <SelectItem value="dolor-cervical">Tratamiento de Dolor Cervical</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Cuéntanos sobre tu problema</Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Describe brevemente tu condición o consulta..."
-                    rows={3}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button type="submit" size="lg" className="flex-1 h-12 text-base font-semibold">
-                    <Send className="size-4 mr-1" />
-                    Enviar por WhatsApp
-                  </Button>
-                  <Button
-                    type="button"
-                    size="lg"
-                    variant="outline"
-                    className="flex-1 h-12 text-base"
-                    onClick={() =>
-                      openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')
-                    }
-                  >
-                    <MessageCircle className="size-4 mr-1 text-green-600" />
-                    Escribir directamente
-                  </Button>
-                </div>
-
-                <p className="text-xs text-center text-muted-foreground">
-                  Al enviar, serás redirigido a WhatsApp con tu información pre-llenada.
-                  Tus datos son confidenciales.
-                </p>
-              </form>
-            </CardContent>
-          </Card>
-        </AnimatedSection>
-      </div>
-    </section>
-  )
-}
 
 /* ═══════════════════════════════════════════════════
    10. FOOTER
@@ -1232,7 +1051,6 @@ export default function FisioEnCasaPage() {
         <HowItWorksSection />
         <TestimonialsSection />
         <CTASection />
-        <AppointmentSection />
       </main>
       <Footer />
       <FloatingWhatsApp />
