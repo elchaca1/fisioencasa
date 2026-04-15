@@ -60,6 +60,21 @@ import {
 const WHATSAPP_NUMBER = '51954670730'
 const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
+/* ─────────── Logo Component ─────────── */
+function FisioHomeLogo({ className = 'size-5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* House outline */}
+      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="currentColor" opacity="0.3" />
+      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* Spine / body line inside house */}
+      <path d="M16 14v2m0 2v2m0 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      {/* Small cross/plus for health */}
+      <circle cx="16" cy="12" r="1.5" fill="currentColor" />
+    </svg>
+  )
+}
+
 function openWhatsApp(message: string) {
   window.open(`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(message)}`, '_blank')
 }
@@ -116,9 +131,9 @@ function Header() {
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-2">
           <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
-            <Heart className="size-5 text-white" />
+            <FisioHomeLogo className="size-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-primary">FisioEnCasa</span>
+          <span className="text-lg sm:text-xl font-bold text-primary">FisioEnCasa</span>
         </a>
 
         {/* Desktop Nav */}
@@ -162,7 +177,7 @@ function Header() {
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2">
                 <div className="flex size-8 items-center justify-center rounded-lg bg-primary">
-                  <Heart className="size-4 text-white" />
+                  <FisioHomeLogo className="size-4 text-white" />
                 </div>
                 <span className="text-lg font-bold text-primary">FisioEnCasa</span>
               </SheetTitle>
@@ -243,8 +258,8 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
           >
-            ¿Cansado del dolor lumbar?{' '}
-            <span className="text-yellow-300">Recupera tu movilidad sin salir de casa</span>
+            ¿Dolor de espalda? El fisioterapeuta{' '}
+            <span className="text-yellow-300">va a tu casa en Lima</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -254,8 +269,8 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100 sm:text-xl"
           >
-            Fisioterapia profesional a domicilio en Lima. Tratamiento personalizado para dolor lumbar,
-            hernias discales y mala postura. Sin esperas, sin traslados — recuperate en la comodidad de tu hogar.
+            Fisioterapeuta profesional que llega a la puerta de tu casa en Lima. Olvídate de traslados,
+            esperas y molestias — recibe tu tratamiento en la comodidad de tu hogar con equipamiento completo.
           </motion.p>
 
           {/* CTA buttons */}
@@ -290,11 +305,11 @@ function HeroSection() {
           >
             <div className="flex items-center gap-2">
               <Award className="size-5 text-yellow-300" />
-              <span className="text-sm font-medium text-blue-100">+10 años de experiencia</span>
+              <span className="text-sm font-medium text-blue-100">+10 años a domicilio</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="size-5 text-yellow-300" />
-              <span className="text-sm font-medium text-blue-100">+2,000 pacientes atendidos</span>
+              <Home className="size-5 text-yellow-300" />
+              <span className="text-sm font-medium text-blue-100">Terapia en tu hogar</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="size-5 text-yellow-300" />
@@ -324,21 +339,33 @@ function AboutSection() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left — Avatar + visual */}
           <AnimatedSection>
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-blue-50 to-primary/5 p-8 flex items-center justify-center">
-                <div className="size-48 sm:size-56 rounded-full bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center shadow-2xl">
-                  <Stethoscope className="size-24 sm:size-28 text-white" />
+            <div className="relative mx-auto max-w-sm lg:max-w-none">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-blue-50 to-primary/5 p-6 sm:p-8 flex items-center justify-center">
+                <div className="size-40 sm:size-48 lg:size-56 rounded-full bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center shadow-2xl">
+                  <FisioHomeLogo className="size-20 sm:size-24 lg:size-28 text-white" />
                 </div>
               </div>
               {/* Floating badge */}
-              <div className="absolute -bottom-4 -right-2 sm:right-4 rounded-xl bg-white p-4 shadow-lg border">
-                <div className="flex items-center gap-3">
-                  <div className="flex size-10 items-center justify-center rounded-full bg-green-100">
-                    <CheckCircle className="size-5 text-green-600" />
+              <div className="absolute -bottom-4 -right-2 sm:right-4 rounded-xl bg-white p-3 sm:p-4 shadow-lg border">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-green-100">
+                    <CheckCircle className="size-4 sm:size-5 text-green-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold">Colegiado CPP</p>
+                    <p className="text-xs sm:text-sm font-semibold">Colegiado CPP</p>
                     <p className="text-xs text-muted-foreground">Habilitado 2025</p>
+                  </div>
+                </div>
+              </div>
+              {/* Floating home badge */}
+              <div className="absolute top-4 -left-2 sm:left-4 rounded-xl bg-white p-3 sm:p-4 shadow-lg border">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-blue-100">
+                    <Home className="size-4 sm:size-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-semibold">A domicilio</p>
+                    <p className="text-xs text-muted-foreground">En toda Lima</p>
                   </div>
                 </div>
               </div>
@@ -349,25 +376,27 @@ function AboutSection() {
           <AnimatedSection delay={0.2}>
             <Badge variant="secondary" className="mb-4">Sobre Mí</Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Tu fisioterapeuta de confianza en Lima
+              Tu fisioterapeuta a domicilio en Lima
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Soy fisioterapeuta colegado con más de 10 años de experiencia en rehabilitación,
-              terapia deportiva y salud ocupacional. Mi misión es ayudarte a recuperar tu
-              calidad de vida con tratamientos basados en evidencia, personalizados y en la
-              comodidad de tu hogar.
+              Soy fisioterapeuta colegado con más de 10 años de experiencia llevando
+              rehabilitación profesional directamente a tu hogar. Mi especialidad es la
+              terapia a domicilio: llego a tu casa con todo el equipamiento necesario para
+              que recuperes tu movilidad sin la molestia de trasladarte a una clínica.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               He atendido a más de 2,000 pacientes en Lima, desde profesionales con dolor
               por trabajo en oficina hasta deportistas en recuperación. Cada tratamiento es
-              único porque cada persona lo es.
+              único porque cada persona lo es — y hacerlo en tu casa hace que la recuperación
+              sea más cómoda, rápida y efectiva.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                'Especialista en rehabilitación de columna lumbar',
+                'Especialista en rehabilitación a domicilio',
                 'Certificado en terapia manual ortopédica',
                 'Formación en salud ocupacional y ergonomía',
-                'Atención domiciliaria personalizada',
+                'Equipamiento completo para atención en casa',
+                'Cobertura en todos los distritos de Lima',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <CheckCircle className="mt-0.5 size-5 shrink-0 text-primary" />
@@ -403,47 +432,48 @@ function AboutSection() {
 function ServicesSection() {
   const services = [
     {
-      icon: Bone,
-      title: 'Tratamiento de Dolor Lumbar',
+      icon: Home,
+      title: 'Fisioterapia a Domicilio',
       description:
-        'Elimina el dolor que limita tu día a día. Con técnicas manuales y ejercicios terapéuticos, reducimos la inflamación y devolvemos la movilidad a tu espalda baja.',
+        'Tu tratamiento profesional sin salir de casa. Llego a tu hogar con todo el equipamiento necesario: camilla portátil, electroestimulación, bandas terapéuticas y más. Sin traslados, sin esperas.',
+      benefits: [
+        'Sin trasladarte a una clínica',
+        'Equipamiento completo en tu casa',
+        'Horarios flexibles que se adaptan a ti',
+        'Atención en todos los distritos de Lima',
+      ],
+    },
+    {
+      icon: Bone,
+      title: 'Dolor Lumbar a Domicilio',
+      description:
+        'Elimina el dolor que limita tu día a día sin moverte de casa. Con técnicas manuales y ejercicios terapéuticos, reducimos la inflamación y devolvemos la movilidad a tu espalda baja.',
       benefits: [
         'Reducción del dolor desde la primera sesión',
         'Mejora en la movilidad y flexibilidad',
-        'Plan de ejercicios para evitar recaídas',
+        'Plan de ejercicios para hacer en casa',
       ],
     },
     {
       icon: Activity,
-      title: 'Corrección Postural',
+      title: 'Corrección Postural en Casa',
       description:
-        'Adiós a los dolores por mala postura. Reeducamos tu cuerpo para mantener una alineación correcta, previniendo lesiones y mejorando tu bienestar general.',
+        'Reeducamos tu postura en tu propio entorno. Evaluamos tu puesto de trabajo real en casa u oficina, y diseñamos un plan de corrección adaptado a tu espacio y rutina.',
       benefits: [
-        'Mejora tu postura en el trabajo y la vida diaria',
+        'Evaluación de ergonomía en tu espacio real',
         'Reduce dolores de cuello y espalda',
-        'Aprende técnicas de ergonomía personalizada',
+        'Técnicas que aplicas en tu día a día',
       ],
     },
     {
       icon: Dumbbell,
-      title: 'Rehabilitación Deportiva',
+      title: 'Rehabilitación Deportiva a Casa',
       description:
-        'Vuelve a tu deporte más fuerte que antes. Tratamiento integral para lesiones deportivas con un enfoque en la prevención y el rendimiento.',
+        'Vuelve a tu deporte más fuerte que antes. Tratamiento integral para lesiones deportivas que se realiza en la comodidad de tu hogar, con seguimiento personalizado constante.',
       benefits: [
         'Recuperación acelerada de lesiones',
         'Fortalecimiento preventivo personalizado',
         'Plan de retorno seguro al deporte',
-      ],
-    },
-    {
-      icon: Home,
-      title: 'Terapia a Domicilio',
-      description:
-        'Fisioterapia de calidad sin salir de casa. Te atendemos en la comodidad de tu hogar con todo el equipamiento necesario para tu tratamiento.',
-      benefits: [
-        'Sin traslados ni esperas',
-        'Ambiente cómodo y familiar',
-        'Horarios flexibles que se adaptan a ti',
       ],
     },
   ]
@@ -454,11 +484,11 @@ function ServicesSection() {
         <AnimatedSection className="text-center">
           <Badge variant="secondary" className="mb-4">Servicios</Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Tratamientos que transforman tu vida
+            Fisioterapia a domicilio: todos los tratamientos en tu casa
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
-            Cada servicio está diseñado para resolver tus problemas de salud con un enfoque
-            personalizado y basado en evidencia científica.
+            Cada tratamiento se realiza en la comodidad de tu hogar. Llego con equipamiento completo
+            y un enfoque personalizado para que recuperes tu salud sin salir de casa.
           </p>
         </AnimatedSection>
 
@@ -541,8 +571,8 @@ function ProblemsSection() {
             ¿Sufres de alguno de estos problemas?
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
-            No estás solo. Estos son los problemas más comunes que trato cada día.
-            La fisioterapia puede ayudarte a superarlos.
+            No estás solo. Estos son los problemas más comunes que trato cada día a domicilio.
+            La fisioterapia en tu casa puede ayudarte a superarlos sin salir de tu hogar.
           </p>
         </AnimatedSection>
 
@@ -578,21 +608,21 @@ function HowItWorksSection() {
       icon: Stethoscope,
       title: 'Evaluación',
       description:
-        'Agendamos una visita a tu hogar donde realizo una evaluación completa de tu condición física, postura y movilidad para entender la causa raíz de tu problema.',
+        'Agendamos una visita a tu hogar donde realizo una evaluación completa de tu condición física, postura y movilidad para entender la causa raíz de tu problema. Llego con todo el equipamiento necesario.',
     },
     {
       number: '02',
       icon: Heart,
       title: 'Tratamiento Personalizado',
       description:
-        'Diseño un plan de tratamiento exclusivo para ti, combinando terapia manual, ejercicios terapéuticos y técnicas especializadas según tus necesidades.',
+        'Diseño un plan de tratamiento exclusivo para ti, combinando terapia manual, ejercicios terapéuticos y técnicas especializadas. Todo se realiza en la comodidad de tu hogar con equipamiento profesional.',
     },
     {
       number: '03',
       icon: CheckCircle,
       title: 'Seguimiento',
       description:
-        'Monitoreo continuo de tu progreso, ajustando el tratamiento según tu evolución para asegurar los mejores resultados en el menor tiempo posible.',
+        'Monitoreo continuo de tu progreso en cada visita a domicilio, ajustando el tratamiento según tu evolución. También puedes consultarme por WhatsApp entre sesiones.',
     },
   ]
 
@@ -604,11 +634,11 @@ function HowItWorksSection() {
             Cómo Funciona
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Recupera tu salud en 3 simples pasos
+            Recupera tu salud en tu propia casa en 3 pasos
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-blue-200">
-            Un proceso claro y transparente para que sepas exactamente qué esperar
-            desde el primer contacto.
+            Un proceso claro y transparente: desde que me contactas hasta que llego a tu casa
+            con todo el equipamiento necesario para tu tratamiento.
           </p>
         </AnimatedSection>
 
@@ -660,7 +690,7 @@ function TestimonialsSection() {
       age: 42,
       condition: 'Dolor lumbar crónico',
       quote:
-        'Después de meses con dolor lumbar que no me dejaba ni dormir, el tratamiento a domicilio fue mi salvación. En la primera semana ya sentía mejoría. Ahora puedo jugar con mis hijos sin dolor.',
+        'Después de meses con dolor lumbar que no me dejaba ni dormir, el tratamiento a domicilio fue mi salvación. No tenía que trasladarme y en la primera semana ya sentía mejoría. Ahora puedo jugar con mis hijos sin dolor. ¡Ir a la clínica era un suplicio, tener al fisio en casa lo cambió todo!',
       rating: 5,
     },
     {
@@ -668,7 +698,7 @@ function TestimonialsSection() {
       age: 35,
       condition: 'Hernia discal',
       quote:
-        'Me diagnosticaron una hernia discal y pensé que solo la cirugía me salvaría. Gracias al tratamiento conservador y personalizado, evité la operación y volví a mi rutina normal.',
+        'Me diagnosticaron una hernia discal y pensé que solo la cirugía me salvaría. Gracias al tratamiento conservador y personalizado en mi casa, evité la operación y volví a mi rutina normal. La comodidad de no salir de casa fue clave para ser constante con las sesiones.',
       rating: 5,
     },
     {
@@ -676,7 +706,7 @@ function TestimonialsSection() {
       age: 28,
       condition: 'Lesión deportiva',
       quote:
-        'Me lesione la rodilla jugando fútbol y estaba desesperada por volver a jugar. El plan de rehabilitación fue increíble — me sentí acompañada en todo momento y volví más fuerte que antes.',
+        'Me lesione la rodilla jugando fútbol y estaba desesperada por volver a jugar. Que el fisioterapeuta venga a casa fue lo mejor — ahorraba tiempo y podía hacer las sesiones sin interrumpir mi rutina. Volví más fuerte que antes.',
       rating: 5,
     },
     {
@@ -684,7 +714,7 @@ function TestimonialsSection() {
       age: 55,
       condition: 'Dolor por trabajo en oficina',
       quote:
-        'Llevaba años con dolores de cuello y espalda por estar tantas horas sentado. La corrección postural y los ejercicios me cambiaron la vida. Ya no necesito analgésicos.',
+        'Llevaba años con dolores de cuello y espalda por estar tantas horas sentado. Lo genial fue que evaluó mi puesto de trabajo en casa y me enseñó ejercicios que hago en mi propia silla. Ya no necesito analgésicos.',
       rating: 4,
     },
   ]
@@ -763,11 +793,12 @@ function CTASection() {
 
             <div className="relative">
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
-                No dejes que el dolor limite tu vida
+                No dejes que el dolor limite tu vida — recibe fisioterapia en casa
               </h2>
               <p className="mt-4 mx-auto max-w-2xl text-lg text-blue-100 leading-relaxed">
-                Cada día que esperas, tu condición puede empeorar. Agenda tu cita hoy y da
-                el primer paso hacia una vida sin dolor. Las citas son limitadas.
+                Cada día que esperas, tu condición puede empeorar. Un fisioterapeuta profesional
+                va a tu casa con todo el equipamiento. Agenda hoy y da el primer paso hacia
+                una vida sin dolor, sin salir de tu hogar.
               </p>
               <div className="mt-4 flex items-center justify-center gap-2 text-yellow-300">
                 <Clock className="size-5" />
@@ -967,13 +998,13 @@ function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
-                <Heart className="size-5 text-white" />
+                <FisioHomeLogo className="size-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">FisioEnCasa</span>
             </div>
             <p className="text-sm leading-relaxed">
-              Fisioterapia profesional a domicilio en Lima. Recupera tu movilidad y calidad de
-              vida con tratamientos personalizados.
+              Fisioterapia profesional a domicilio en Lima. Recuperate en la comodidad de tu
+              hogar — el fisioterapeuta va a tu casa con todo el equipamiento necesario.
             </p>
           </div>
 
