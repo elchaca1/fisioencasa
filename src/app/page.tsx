@@ -350,13 +350,12 @@ function HeroSection() {
 
               {/* Image */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
-                <Image
-                  src="/hero-fisio-home.png"
-                  alt="Fisioterapeuta atendiendo a domicilio en Lima"
-                  width={1344}
-                  height={768}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/hero-fisio-v2.png"
+                  alt="Fisioterapeuta atendiendo a una paciente a domicilio en Lima"
                   className="w-full h-auto object-cover"
-                  priority
+                  loading="eager"
                 />
                 {/* Gradient overlay on image bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
