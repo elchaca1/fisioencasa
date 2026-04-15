@@ -232,92 +232,180 @@ function Header() {
 function HeroSection() {
   return (
     <section id="inicio" className="relative overflow-hidden bg-gradient-to-br from-primary via-blue-700 to-blue-900 text-white">
-      {/* Decorative pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 size-72 rounded-full bg-white/20 blur-3xl" />
-        <div className="absolute bottom-10 right-10 size-96 rounded-full bg-white/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[500px] rounded-full bg-white/5 blur-3xl" />
+      {/* Animated decorative background */}
+      <div className="absolute inset-0">
+        {/* Dot pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }} />
+        {/* Floating gradient orbs */}
+        <div className="absolute top-10 left-10 size-72 rounded-full bg-white/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-20 size-96 rounded-full bg-blue-400/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/3 size-[400px] rounded-full bg-yellow-400/5 blur-3xl" />
+        {/* Diagonal accent line */}
+        <div className="absolute -top-20 -right-20 h-[600px] w-[600px] rounded-full border border-white/5" />
+        <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full border border-white/5" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-        <div className="max-w-3xl">
-          {/* Urgency badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Badge className="mb-6 border-yellow-400 bg-yellow-400/20 text-yellow-100 text-sm px-4 py-1.5 hover:bg-yellow-400/30">
-              🔥 Las primeras 10 citas del mes tienen 20% de descuento
-            </Badge>
-          </motion.div>
-
-          {/* Main headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
-          >
-            ¿Dolor de espalda? El fisioterapeuta{' '}
-            <span className="text-yellow-300">va a tu casa en Lima</span>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100 sm:text-xl"
-          >
-            Fisioterapeuta profesional que llega a la puerta de tu casa en Lima. Olvídate de traslados,
-            esperas y molestias — recibe tu tratamiento en la comodidad de tu hogar con equipamiento completo.
-          </motion.p>
-
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 flex flex-col gap-4 sm:flex-row"
-          >
-            <a href="#contacto">
-              <Button size="lg" className="w-full bg-white text-primary hover:bg-blue-50 font-semibold text-base px-8 h-12 sm:w-auto">
-                <Calendar className="size-5 mr-1" />
-                Agenda tu Cita
-              </Button>
-            </a>
-            <Button
-              size="lg"
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-12 sm:w-auto"
-              onClick={() => openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Left — Text content */}
+          <div>
+            {/* Urgency badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <MessageCircle className="size-5 mr-1" />
-              Escríbeme por WhatsApp
-            </Button>
-          </motion.div>
+              <Badge className="mb-6 border-yellow-400 bg-yellow-400/20 text-yellow-100 text-sm px-4 py-1.5 hover:bg-yellow-400/30">
+                🔥 Las primeras 10 citas del mes tienen 20% de descuento
+              </Badge>
+            </motion.div>
 
-          {/* Trust indicators */}
+            {/* Main headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-[3.5rem]"
+            >
+              ¿Dolor de espalda? El fisioterapeuta{' '}
+              <span className="text-yellow-300">va a tu casa en Lima</span>
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100 sm:text-xl"
+            >
+              Fisioterapeuta profesional que llega a la puerta de tu casa en Lima. Olvídate de traslados,
+              esperas y molestias — recibe tu tratamiento en la comodidad de tu hogar con equipamiento completo.
+            </motion.p>
+
+            {/* CTA buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8 flex flex-col gap-4 sm:flex-row"
+            >
+              <a href="#contacto">
+                <Button size="lg" className="w-full bg-white text-primary hover:bg-blue-50 font-semibold text-base px-8 h-13 sm:w-auto shadow-lg shadow-white/20">
+                  <Calendar className="size-5 mr-1" />
+                  Agenda tu Cita
+                </Button>
+              </a>
+              <Button
+                size="lg"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-13 sm:w-auto shadow-lg shadow-green-600/20"
+                onClick={() => openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}
+              >
+                <MessageCircle className="size-5 mr-1" />
+                Escríbeme por WhatsApp
+              </Button>
+            </motion.div>
+
+            {/* Trust indicators — compact row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="mt-10 flex flex-wrap gap-x-6 gap-y-3"
+            >
+              <div className="flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+                  <Award className="size-4 text-yellow-300" />
+                </div>
+                <span className="text-sm font-medium text-blue-100">+10 años a domicilio</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+                  <Home className="size-4 text-yellow-300" />
+                </div>
+                <span className="text-sm font-medium text-blue-100">Terapia en tu hogar</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+                  <CheckCircle className="size-4 text-yellow-300" />
+                </div>
+                <span className="text-sm font-medium text-blue-100">Colegiado y habilitado</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right — Hero image with decorative elements */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-12 flex flex-wrap gap-8"
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative hidden lg:block"
           >
-            <div className="flex items-center gap-2">
-              <Award className="size-5 text-yellow-300" />
-              <span className="text-sm font-medium text-blue-100">+10 años a domicilio</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Home className="size-5 text-yellow-300" />
-              <span className="text-sm font-medium text-blue-100">Terapia en tu hogar</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="size-5 text-yellow-300" />
-              <span className="text-sm font-medium text-blue-100">Colegiado y habilitado</span>
+            {/* Main image container */}
+            <div className="relative">
+              {/* Decorative frame background */}
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10" />
+
+              {/* Image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
+                <Image
+                  src="/hero-fisioterapia.png"
+                  alt="Fisioterapeuta atendiendo a domicilio en Lima"
+                  width={1344}
+                  height={768}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                {/* Gradient overlay on image bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
+              </div>
+
+              {/* Floating card — rating */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="absolute -bottom-4 -left-4 rounded-xl bg-white p-3 shadow-xl"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="size-3.5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <span className="text-sm font-bold text-foreground">4.9</span>
+                  <span className="text-xs text-muted-foreground">/ 5</span>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">+2,000 pacientes satisfechos</p>
+              </motion.div>
+
+              {/* Floating card — home visit */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1.0 }}
+                className="absolute -top-4 -right-4 rounded-xl bg-green-600 px-4 py-3 shadow-xl text-white"
+              >
+                <div className="flex items-center gap-2">
+                  <Home className="size-5" />
+                  <div>
+                    <p className="text-sm font-bold">Atención a Domicilio</p>
+                    <p className="text-xs text-green-100">En toda Lima</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Bottom wave divider */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16 sm:h-20">
+          <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="white" />
+        </svg>
       </div>
     </section>
   )
