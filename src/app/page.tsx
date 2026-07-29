@@ -236,8 +236,8 @@ function HeroSection() {
         <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full border border-white/5" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
           {/* Left — Text content */}
           <div>
             {/* Urgency badge */}
@@ -246,19 +246,8 @@ function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Badge className="mb-6 border-white/30 bg-white/15 text-white text-sm px-4 py-1.5 hover:bg-white/25">
-                🎓 Especialización en Neurorrehabilitación, Terapia Deportiva y Salud Ocupacional
-              </Badge>
-            </motion.div>
-
-            {/* 90 min highlight badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <Badge className="mb-6 border-yellow-400 bg-yellow-400/20 text-yellow-100 text-sm px-4 py-1.5 hover:bg-yellow-400/30">
-                ⏱️ Sesiones de mínimo 90 minutos — atención real, sin apuros
+              <Badge className="mb-4 border-white/30 bg-white/15 text-white text-xs px-3 py-1 sm:text-sm sm:px-4 sm:py-1.5 hover:bg-white/25 leading-snug">
+                🎓 Neurorrehabilitación · Deportiva · Salud Ocupacional
               </Badge>
             </motion.div>
 
@@ -267,7 +256,7 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
+              className="text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl md:text-4xl lg:text-5xl"
             >
               Fisioterapeuta a domicilio en Lima.{' '}
               <span className="text-yellow-300">Especialista en Neurorrehabilitación, Fisioterapia Deportiva y Salud Ocupacional.</span>
@@ -278,9 +267,9 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100 sm:text-xl"
+              className="mt-4 max-w-xl text-base leading-relaxed text-blue-100 sm:text-lg md:text-xl"
             >
-              Recupera tu movilidad sin salir de casa. Atención en las mañanas. Sesiones de <span className="font-semibold text-white">mínimo 90 minutos</span> con tratamiento integral.
+              Recupera tu movilidad sin salir de casa. Atención en las mañanas con tratamiento integral.
             </motion.p>
 
             {/* CTA buttons */}
@@ -288,7 +277,7 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8"
+              className="mt-6"
             >
               <Button
                 size="lg"
@@ -305,31 +294,25 @@ function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-10 flex flex-wrap gap-x-6 gap-y-3"
+              className="mt-8 flex flex-wrap gap-x-5 gap-y-2.5"
             >
               <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
-                  <Clock className="size-4 text-yellow-300" />
+                <div className="flex size-7 items-center justify-center rounded-full bg-white/10 sm:size-8">
+                  <Award className="size-3.5 text-yellow-300 sm:size-4" />
                 </div>
-                <span className="text-sm font-medium text-blue-100">Sesiones de mínimo 90 min</span>
+                <span className="text-xs font-medium text-blue-100 sm:text-sm">+2 años a domicilio</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
-                  <Award className="size-4 text-yellow-300" />
+                <div className="flex size-7 items-center justify-center rounded-full bg-white/10 sm:size-8">
+                  <Home className="size-3.5 text-yellow-300 sm:size-4" />
                 </div>
-                <span className="text-sm font-medium text-blue-100">+2 años a domicilio</span>
+                <span className="text-xs font-medium text-blue-100 sm:text-sm">Terapia en tu hogar</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
-                  <Home className="size-4 text-yellow-300" />
+                <div className="flex size-7 items-center justify-center rounded-full bg-white/10 sm:size-8">
+                  <CheckCircle className="size-3.5 text-yellow-300 sm:size-4" />
                 </div>
-                <span className="text-sm font-medium text-blue-100">Terapia en tu hogar</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
-                  <CheckCircle className="size-4 text-yellow-300" />
-                </div>
-                <span className="text-sm font-medium text-blue-100">Colegiado y habilitado</span>
+                <span className="text-xs font-medium text-blue-100 sm:text-sm">Colegiado y habilitado</span>
               </div>
             </motion.div>
           </div>
@@ -895,12 +878,11 @@ function PlansSection() {
     {
       name: 'Paquete Recuperación',
       price: 'S/ 640',
-      originalPrice: 'S/ 720',
+      originalPrice: null,
       period: '4 sesiones',
       description: 'Plan completo de rehabilitación musculoesquelética.',
       features: [
         '4 sesiones de mínimo 90 minutos cada una',
-        'Ahorro de S/ 80',
         'Seguimiento personalizado',
         'Plan terapéutico integral',
         'Consultas por WhatsApp',
@@ -914,12 +896,11 @@ function PlansSection() {
     {
       name: 'Paquete Neuro',
       price: 'S/ 1,200',
-      originalPrice: 'S/ 1,440',
+      originalPrice: null,
       period: '8 sesiones',
       description: 'Especializado en neurorrehabilitación.',
       features: [
         '8 sesiones especializadas de mínimo 90 min',
-        'Ahorro de S/ 240',
         'Enfoque en neurorrehabilitación',
         'Plan individualizado de neuroterapia',
         'Seguimiento continuo del progreso',
@@ -966,11 +947,6 @@ function PlansSection() {
                   <CardTitle className="text-xl">{plan.name}</CardTitle>
                   <CardDescription className="mt-1 min-h-[40px]">{plan.description}</CardDescription>
                   <div className="mt-4">
-                    {plan.originalPrice && (
-                      <span className="block text-sm text-muted-foreground line-through">
-                        {plan.originalPrice}
-                      </span>
-                    )}
                     <span className="text-4xl font-extrabold text-primary">{plan.price}</span>
                     <span className="block text-sm text-muted-foreground mt-1">{plan.period}</span>
                   </div>

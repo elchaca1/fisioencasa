@@ -1,0 +1,1293 @@
+     1→'use client'
+     2→
+     3→import { useState, useRef } from 'react'
+     4→import Image from 'next/image'
+     5→import { motion, useInView } from 'framer-motion'
+     6→import {
+     7→  Phone,
+     8→  MessageCircle,
+     9→  Calendar,
+    10→  CheckCircle,
+    11→  Star,
+    12→  MapPin,
+    13→  Clock,
+    14→  Award,
+    15→  Users,
+    16→  Heart,
+    17→  Activity,
+    18→  Home,
+    19→  ArrowRight,
+    20→  Menu,
+    21→  Stethoscope,
+    22→  Bone,
+    23→  MonitorSmartphone,
+    24→  Dumbbell,
+    25→  ChevronRight,
+    26→  Send,
+    27→  Mail,
+    28→  Facebook,
+    29→  Instagram,
+    30→  Linkedin,
+    31→} from 'lucide-react'
+    32→import { Button } from '@/components/ui/button'
+    33→import {
+    34→  Card,
+    35→  CardContent,
+    36→  CardDescription,
+    37→  CardHeader,
+    38→  CardTitle,
+    39→} from '@/components/ui/card'
+    40→import { Input } from '@/components/ui/input'
+    41→import { Textarea } from '@/components/ui/textarea'
+    42→import { Label } from '@/components/ui/label'
+    43→import { Badge } from '@/components/ui/badge'
+    44→import { Separator } from '@/components/ui/separator'
+    45→import {
+    46→  Select,
+    47→  SelectContent,
+    48→  SelectItem,
+    49→  SelectTrigger,
+    50→  SelectValue,
+    51→} from '@/components/ui/select'
+    52→import {
+    53→  Sheet,
+    54→  SheetContent,
+    55→  SheetHeader,
+    56→  SheetTitle,
+    57→  SheetTrigger,
+    58→  SheetClose,
+    59→} from '@/components/ui/sheet'
+    60→
+    61→const WHATSAPP_NUMBER = '51954670730'
+    62→const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+    63→
+    64→/* ─────────── Logo Component ─────────── */
+    65→function FisioHomeLogo({ className = 'size-5' }: { className?: string }) {
+    66→  return (
+    67→    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    68→      {/* House outline */}
+    69→      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="currentColor" opacity="0.3" />
+    70→      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    71→      {/* Spine / body line inside house */}
+    72→      <path d="M16 14v2m0 2v2m0 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    73→      {/* Small cross/plus for health */}
+    74→      <circle cx="16" cy="12" r="1.5" fill="currentColor" />
+    75→    </svg>
+    76→  )
+    77→}
+    78→
+    79→function openWhatsApp(message: string) {
+    80→  window.open(`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(message)}`, '_blank')
+    81→}
+    82→
+    83→/* ─────────── Scroll Animation Wrapper ─────────── */
+    84→function AnimatedSection({
+    85→  children,
+    86→  className = '',
+    87→  delay = 0,
+    88→}: {
+    89→  children: React.ReactNode
+    90→  className?: string
+    91→  delay?: number
+    92→}) {
+    93→  const ref = useRef<HTMLDivElement>(null)
+    94→  const isInView = useInView(ref, { once: true, margin: '-80px' })
+    95→
+    96→  return (
+    97→    <motion.div
+    98→      ref={ref}
+    99→      initial={{ opacity: 0, y: 40 }}
+   100→      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+   101→      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+   102→      className={className}
+   103→    >
+   104→      {children}
+   105→    </motion.div>
+   106→  )
+   107→}
+   108→
+   109→/* ─────────── Navigation Links ─────────── */
+   110→const NAV_LINKS = [
+   111→  { href: '#inicio', label: 'Inicio' },
+   112→  { href: '#sobre-mi', label: 'Sobre Mí' },
+   113→  { href: '#servicios', label: 'Servicios' },
+   114→  { href: '#planes', label: 'Planes' },
+   115→  { href: '#como-funciona', label: 'Cómo Funciona' },
+   116→  { href: '#testimonios', label: 'Testimonios' },
+   117→]
+   118→
+   119→const WHATSAPP_MESSAGE = 'Hola, me interesa el paquete de 4/8 sesiones. ¿Hay disponibilidad para las mañanas?'
+   120→
+   121→/* ═══════════════════════════════════════════════════
+   122→   1. HEADER / NAVIGATION
+   123→   ═══════════════════════════════════════════════════ */
+   124→function Header() {
+   125→  const [mobileOpen, setMobileOpen] = useState(false)
+   126→
+   127→  function handleNavClick() {
+   128→    setMobileOpen(false)
+   129→  }
+   130→
+   131→  return (
+   132→    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+   133→      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+   134→        {/* Logo */}
+   135→        <a href="#inicio" className="flex items-center gap-2">
+   136→          <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
+   137→            <FisioHomeLogo className="size-5 text-white" />
+   138→          </div>
+   139→          <span className="text-lg sm:text-xl font-bold text-primary">FisioEnCasa</span>
+   140→        </a>
+   141→
+   142→        {/* Desktop Nav */}
+   143→        <nav className="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
+   144→          {NAV_LINKS.map((link) => (
+   145→            <a
+   146→              key={link.href}
+   147→              href={link.href}
+   148→              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+   149→            >
+   150→              {link.label}
+   151→            </a>
+   152→          ))}
+   153→        </nav>
+   154→
+   155→        {/* Desktop CTA */}
+   156→        <div className="hidden md:flex items-center gap-3">
+   157→          <Button
+   158→            onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+   159→            className="bg-green-600 hover:bg-green-700 text-white"
+   160→          >
+   161→            <MessageCircle className="size-4" />
+   162→            Agenda por WhatsApp
+   163→          </Button>
+   164→        </div>
+   165→
+   166→        {/* Mobile Hamburger */}
+   167→        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+   168→          <SheetTrigger asChild>
+   169→            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Abrir menú">
+   170→              <Menu className="size-5" />
+   171→            </Button>
+   172→          </SheetTrigger>
+   173→          <SheetContent side="right" className="w-72">
+   174→            <SheetHeader>
+   175→              <SheetTitle className="flex items-center gap-2">
+   176→                <div className="flex size-8 items-center justify-center rounded-lg bg-primary">
+   177→                  <FisioHomeLogo className="size-4 text-white" />
+   178→                </div>
+   179→                <span className="text-lg font-bold text-primary">FisioEnCasa</span>
+   180→              </SheetTitle>
+   181→            </SheetHeader>
+   182→            <nav className="flex flex-col gap-1 px-4 pt-4" aria-label="Navegación móvil">
+   183→              {NAV_LINKS.map((link) => (
+   184→                <SheetClose asChild key={link.href}>
+   185→                  <a
+   186→                    href={link.href}
+   187→                    onClick={handleNavClick}
+   188→                    className="flex items-center gap-2 rounded-md px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-primary"
+   189→                  >
+   190→                    <ChevronRight className="size-4 text-muted-foreground" />
+   191→                    {link.label}
+   192→                  </a>
+   193→                </SheetClose>
+   194→              ))}
+   195→            </nav>
+   196→            <div className="flex flex-col gap-3 px-4 pt-6">
+   197→              <SheetClose asChild>
+   198→                <Button
+   199→                  onClick={() => {
+   200→                    handleNavClick()
+   201→                    openWhatsApp(WHATSAPP_MESSAGE)
+   202→                  }}
+   203→                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+   204→                >
+   205→                  <MessageCircle className="size-4" />
+   206→                  Agenda por WhatsApp
+   207→                </Button>
+   208→              </SheetClose>
+   209→            </div>
+   210→          </SheetContent>
+   211→        </Sheet>
+   212→      </div>
+   213→    </header>
+   214→  )
+   215→}
+   216→
+   217→/* ═══════════════════════════════════════════════════
+   218→   2. HERO SECTION
+   219→   ═══════════════════════════════════════════════════ */
+   220→function HeroSection() {
+   221→  return (
+   222→    <section id="inicio" className="relative overflow-hidden bg-gradient-to-br from-primary via-blue-700 to-blue-900 text-white">
+   223→      {/* Animated decorative background */}
+   224→      <div className="absolute inset-0">
+   225→        {/* Dot pattern overlay */}
+   226→        <div className="absolute inset-0 opacity-[0.04]" style={{
+   227→          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+   228→          backgroundSize: '24px 24px',
+   229→        }} />
+   230→        {/* Floating gradient orbs */}
+   231→        <div className="absolute top-10 left-10 size-72 rounded-full bg-white/10 blur-3xl animate-pulse" />
+   232→        <div className="absolute bottom-0 right-20 size-96 rounded-full bg-blue-400/10 blur-3xl" />
+   233→        <div className="absolute top-1/2 left-1/3 size-[400px] rounded-full bg-yellow-400/5 blur-3xl" />
+   234→        {/* Diagonal accent line */}
+   235→        <div className="absolute -top-20 -right-20 h-[600px] w-[600px] rounded-full border border-white/5" />
+   236→        <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full border border-white/5" />
+   237→      </div>
+   238→
+   239→      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+   240→        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+   241→          {/* Left — Text content */}
+   242→          <div>
+   243→            {/* Urgency badge */}
+   244→            <motion.div
+   245→              initial={{ opacity: 0, y: -20 }}
+   246→              animate={{ opacity: 1, y: 0 }}
+   247→              transition={{ duration: 0.5 }}
+   248→            >
+   249→              <Badge className="mb-6 border-white/30 bg-white/15 text-white text-sm px-4 py-1.5 hover:bg-white/25">
+   250→                🎓 Especialización en Neurorrehabilitación, Terapia Deportiva y Salud Ocupacional
+   251→              </Badge>
+   252→            </motion.div>
+   253→
+   254→            {/* 90 min highlight badge */}
+   255→            <motion.div
+   256→              initial={{ opacity: 0, y: -20 }}
+   257→              animate={{ opacity: 1, y: 0 }}
+   258→              transition={{ duration: 0.5, delay: 0.1 }}
+   259→            >
+   260→              <Badge className="mb-6 border-yellow-400 bg-yellow-400/20 text-yellow-100 text-sm px-4 py-1.5 hover:bg-yellow-400/30">
+   261→                ⏱️ Sesiones de mínimo 90 minutos — atención real, sin apuros
+   262→              </Badge>
+   263→            </motion.div>
+   264→
+   265→            {/* Main headline */}
+   266→            <motion.h1
+   267→              initial={{ opacity: 0, y: 20 }}
+   268→              animate={{ opacity: 1, y: 0 }}
+   269→              transition={{ duration: 0.6, delay: 0.1 }}
+   270→              className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
+   271→            >
+   272→              Fisioterapeuta a domicilio en Lima.{' '}
+   273→              <span className="text-yellow-300">Especialista en Neurorrehabilitación, Fisioterapia Deportiva y Salud Ocupacional.</span>
+   274→            </motion.h1>
+   275→
+   276→            {/* Subheadline */}
+   277→            <motion.p
+   278→              initial={{ opacity: 0, y: 20 }}
+   279→              animate={{ opacity: 1, y: 0 }}
+   280→              transition={{ duration: 0.6, delay: 0.2 }}
+   281→              className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100 sm:text-xl"
+   282→            >
+   283→              Recupera tu movilidad sin salir de casa. Atención en las mañanas. Sesiones de <span className="font-semibold text-white">mínimo 90 minutos</span> con tratamiento integral.
+   284→            </motion.p>
+   285→
+   286→            {/* CTA buttons */}
+   287→            <motion.div
+   288→              initial={{ opacity: 0, y: 20 }}
+   289→              animate={{ opacity: 1, y: 0 }}
+   290→              transition={{ duration: 0.6, delay: 0.3 }}
+   291→              className="mt-8"
+   292→            >
+   293→              <Button
+   294→                size="lg"
+   295→                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-13 sm:w-auto shadow-lg shadow-green-600/20"
+   296→                onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+   297→              >
+   298→                <MessageCircle className="size-5 mr-1" />
+   299→                Agenda por WhatsApp
+   300→              </Button>
+   301→            </motion.div>
+   302→
+   303→            {/* Trust indicators — compact row */}
+   304→            <motion.div
+   305→              initial={{ opacity: 0 }}
+   306→              animate={{ opacity: 1 }}
+   307→              transition={{ duration: 0.6, delay: 0.5 }}
+   308→              className="mt-10 flex flex-wrap gap-x-6 gap-y-3"
+   309→            >
+   310→              <div className="flex items-center gap-2">
+   311→                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+   312→                  <Clock className="size-4 text-yellow-300" />
+   313→                </div>
+   314→                <span className="text-sm font-medium text-blue-100">Sesiones de mínimo 90 min</span>
+   315→              </div>
+   316→              <div className="flex items-center gap-2">
+   317→                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+   318→                  <Award className="size-4 text-yellow-300" />
+   319→                </div>
+   320→                <span className="text-sm font-medium text-blue-100">+2 años a domicilio</span>
+   321→              </div>
+   322→              <div className="flex items-center gap-2">
+   323→                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+   324→                  <Home className="size-4 text-yellow-300" />
+   325→                </div>
+   326→                <span className="text-sm font-medium text-blue-100">Terapia en tu hogar</span>
+   327→              </div>
+   328→              <div className="flex items-center gap-2">
+   329→                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+   330→                  <CheckCircle className="size-4 text-yellow-300" />
+   331→                </div>
+   332→                <span className="text-sm font-medium text-blue-100">Colegiado y habilitado</span>
+   333→              </div>
+   334→            </motion.div>
+   335→          </div>
+   336→
+   337→          {/* Right — Hero image with decorative elements */}
+   338→          <motion.div
+   339→            initial={{ opacity: 0, x: 60 }}
+   340→            animate={{ opacity: 1, x: 0 }}
+   341→            transition={{ duration: 0.8, delay: 0.3 }}
+   342→            className="relative hidden lg:block"
+   343→          >
+   344→            {/* Main image container */}
+   345→            <div className="relative">
+   346→              {/* Decorative frame background */}
+   347→              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10" />
+   348→
+   349→              {/* Image */}
+   350→              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
+   351→                {/* eslint-disable-next-line @next/next/no-img-element */}
+   352→                <img
+   353→                  src="/hero-fisio-v4.png"
+   354→                  alt="Fisioterapeuta atendiendo a una paciente a domicilio en Lima"
+   355→                  className="w-full h-auto object-cover"
+   356→                  loading="eager"
+   357→                />
+   358→                {/* Gradient overlay on image bottom */}
+   359→                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
+   360→              </div>
+   361→
+   362→              {/* Floating card — rating */}
+   363→              <motion.div
+   364→                initial={{ opacity: 0, scale: 0.8 }}
+   365→                animate={{ opacity: 1, scale: 1 }}
+   366→                transition={{ duration: 0.5, delay: 0.8 }}
+   367→                className="absolute -bottom-4 -left-4 rounded-xl bg-white p-3 shadow-xl"
+   368→              >
+   369→                <div className="flex items-center gap-2">
+   370→                  <div className="flex gap-0.5">
+   371→                    {Array.from({ length: 5 }).map((_, i) => (
+   372→                      <Star key={i} className="size-3.5 fill-yellow-400 text-yellow-400" />
+   373→                    ))}
+   374→                  </div>
+   375→                  <span className="text-sm font-bold text-foreground">4.9</span>
+   376→                  <span className="text-xs text-muted-foreground">/ 5</span>
+   377→                </div>
+   378→                <p className="mt-1 text-xs text-muted-foreground">+1,000 pacientes satisfechos</p>
+   379→              </motion.div>
+   380→
+   381→              {/* Floating card — home visit */}
+   382→              <motion.div
+   383→                initial={{ opacity: 0, scale: 0.8 }}
+   384→                animate={{ opacity: 1, scale: 1 }}
+   385→                transition={{ duration: 0.5, delay: 1.0 }}
+   386→                className="absolute -top-4 -right-4 rounded-xl bg-green-600 px-4 py-3 shadow-xl text-white"
+   387→              >
+   388→                <div className="flex items-center gap-2">
+   389→                  <Home className="size-5" />
+   390→                  <div>
+   391→                    <p className="text-sm font-bold">Atención a Domicilio</p>
+   392→                    <p className="text-xs text-green-100">En toda Lima</p>
+   393→                  </div>
+   394→                </div>
+   395→              </motion.div>
+   396→            </div>
+   397→          </motion.div>
+   398→        </div>
+   399→      </div>
+   400→
+   401→      {/* Bottom wave divider */}
+   402→      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+   403→        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16 sm:h-20">
+   404→          <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="white" />
+   405→        </svg>
+   406→      </div>
+   407→    </section>
+   408→  )
+   409→}
+   410→
+   411→/* ═══════════════════════════════════════════════════
+   412→   3. SOBRE MÍ (ABOUT ME)
+   413→   ═══════════════════════════════════════════════════ */
+   414→function AboutSection() {
+   415→  const stats = [
+   416→    { icon: Award, value: '2+', label: 'Años de experiencia' },
+   417→    { icon: Users, value: '1,000+', label: 'Pacientes atendidos' },
+   418→    { icon: CheckCircle, value: 'Neuro', label: 'Especialización' },
+   419→    { icon: Star, value: '4.9', label: 'Calificación promedio' },
+   420→  ]
+   421→
+   422→  return (
+   423→    <section id="sobre-mi" className="py-16 sm:py-24 bg-white">
+   424→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+   425→        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+   426→          {/* Left — Avatar + visual */}
+   427→          <AnimatedSection>
+   428→            <div className="relative mx-auto max-w-sm lg:max-w-none">
+   429→              <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] relative rounded-2xl overflow-hidden shadow-2xl">
+   430→                <Image
+   431→                  src="/foto-perfil.png"
+   432→                  alt="Fisioterapeuta FisioEnCasa — Foto de perfil profesional"
+   433→                  fill
+   434→                  className="object-cover object-top"
+   435→                  priority
+   436→                />
+   437→              </div>
+   438→              {/* Floating badge */}
+   439→              <div className="absolute -bottom-4 -right-2 sm:right-4 rounded-xl bg-white p-3 sm:p-4 shadow-lg border">
+   440→                <div className="flex items-center gap-2 sm:gap-3">
+   441→                  <div className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-green-100">
+   442→                    <CheckCircle className="size-4 sm:size-5 text-green-600" />
+   443→                  </div>
+   444→                  <div>
+   445→                    <p className="text-xs sm:text-sm font-semibold">Colegiado CPP</p>
+   446→                    <p className="text-xs text-muted-foreground">Habilitado 2026</p>
+   447→                  </div>
+   448→                </div>
+   449→              </div>
+   450→              {/* Floating home badge */}
+   451→              <div className="absolute top-4 -left-2 sm:left-4 rounded-xl bg-white p-3 sm:p-4 shadow-lg border">
+   452→                <div className="flex items-center gap-2 sm:gap-3">
+   453→                  <div className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-blue-100">
+   454→                    <Home className="size-4 sm:size-5 text-primary" />
+   455→                  </div>
+   456→                  <div>
+   457→                    <p className="text-xs sm:text-sm font-semibold">A domicilio</p>
+   458→                    <p className="text-xs text-muted-foreground">En toda Lima</p>
+   459→                  </div>
+   460→                </div>
+   461→              </div>
+   462→            </div>
+   463→          </AnimatedSection>
+   464→
+   465→          {/* Right — Content */}
+   466→          <AnimatedSection delay={0.2}>
+   467→            <Badge variant="secondary" className="mb-4">Sobre Mí</Badge>
+   468→            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+   469→              Tu fisioterapeuta a domicilio en Lima
+   470→            </h2>
+   471→            <p className="mt-4 text-muted-foreground leading-relaxed">
+   472→              Soy fisioterapeuta colegiado con más de 2 años de experiencia atendiendo
+   473→              lesiones musculoesqueléticas y neurológicas. Actualmente curso la especialización
+   474→              en neurorehabilitación, lo que me permite ofrecer un enfoque integral y actualizado
+   475→              para cada paciente. Mi compromiso es llevar la rehabilitación profesional
+   476→              directamente a tu hogar con todo el equipamiento necesario.
+   477→            </p>
+   478→            <p className="mt-4 text-muted-foreground leading-relaxed">
+   479→              He atendido a más de 1,000 pacientes en Lima, desde personas con lesiones
+   480→              musculoesqueléticas hasta pacientes con condiciones neurológicas que requieren
+   481→              rehabilitación especializada. Cada tratamiento es único porque cada persona lo es
+   482→              — y hacerlo en tu casa hace que la recuperación sea más cómoda, rápida y efectiva.
+   483→            </p>
+   484→            <ul className="mt-6 space-y-3">
+   485→              {[
+   486→                'Atención de lesiones musculoesqueléticas',
+   487→                'Especialización en neurorehabilitación',
+   488→                'Tratamiento de patologías neurológicas',
+   489→                'Equipamiento completo para atención en casa',
+   490→                'Cobertura en todos los distritos de Lima',
+   491→              ].map((item) => (
+   492→                <li key={item} className="flex items-start gap-3">
+   493→                  <CheckCircle className="mt-0.5 size-5 shrink-0 text-primary" />
+   494→                  <span className="text-sm">{item}</span>
+   495→                </li>
+   496→              ))}
+   497→            </ul>
+   498→          </AnimatedSection>
+   499→        </div>
+   500→
+   501→        {/* Stats row */}
+   502→        <AnimatedSection delay={0.3} className="mt-16">
+   503→          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+   504→            {stats.map((stat) => (
+   505→              <Card key={stat.label} className="text-center border-none shadow-md">
+   506→                <CardContent className="pt-6 pb-6 flex flex-col items-center gap-2">
+   507→                  <stat.icon className="size-8 text-primary" />
+   508→                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
+   509→                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+   510→                </CardContent>
+   511→              </Card>
+   512→            ))}
+   513→          </div>
+   514→        </AnimatedSection>
+   515→      </div>
+   516→    </section>
+   517→  )
+   518→}
+   519→
+   520→/* ═══════════════════════════════════════════════════
+   521→   4. SERVICIOS (SERVICES)
+   522→   ═══════════════════════════════════════════════════ */
+   523→function ServicesSection() {
+   524→  const services = [
+   525→    {
+   526→      icon: Home,
+   527→      title: 'Fisioterapia a Domicilio',
+   528→      description:
+   529→        'Tu tratamiento profesional sin salir de casa. Llego a tu hogar con todo el equipamiento necesario: camilla portátil, electroestimulación, bandas terapéuticas y más. Sin traslados, sin esperas.',
+   530→      benefits: [
+   531→        'Sin trasladarte a una clínica',
+   532→        'Equipamiento completo en tu casa',
+   533→        'Horarios flexibles que se adaptan a ti',
+   534→        'Atención en todos los distritos de Lima',
+   535→      ],
+   536→    },
+   537→    {
+   538→      icon: Bone,
+   539→      title: 'Dolor Lumbar a Domicilio',
+   540→      description:
+   541→        'Elimina el dolor que limita tu día a día sin moverte de casa. Con técnicas manuales y ejercicios terapéuticos, reducimos la inflamación y devolvemos la movilidad a tu espalda baja.',
+   542→      benefits: [
+   543→        'Reducción del dolor desde la primera sesión',
+   544→        'Mejora en la movilidad y flexibilidad',
+   545→        'Plan de ejercicios para hacer en casa',
+   546→      ],
+   547→    },
+   548→    {
+   549→      icon: Activity,
+   550→      title: 'Corrección Postural en Casa',
+   551→      description:
+   552→        'Reeducamos tu postura en tu propio entorno. Evaluamos tu puesto de trabajo real en casa u oficina, y diseñamos un plan de corrección adaptado a tu espacio y rutina.',
+   553→      benefits: [
+   554→        'Evaluación de ergonomía en tu espacio real',
+   555→        'Reduce dolores de cuello y espalda',
+   556→        'Técnicas que aplicas en tu día a día',
+   557→      ],
+   558→    },
+   559→    {
+   560→      icon: Dumbbell,
+   561→      title: 'Rehabilitación Deportiva a Casa',
+   562→      description:
+   563→        'Vuelve a tu deporte más fuerte que antes. Tratamiento integral para lesiones deportivas que se realiza en la comodidad de tu hogar, con seguimiento personalizado constante.',
+   564→      benefits: [
+   565→        'Recuperación acelerada de lesiones',
+   566→        'Fortalecimiento preventivo personalizado',
+   567→        'Plan de retorno seguro al deporte',
+   568→      ],
+   569→    },
+   570→  ]
+   571→
+   572→  return (
+   573→    <section id="servicios" className="py-16 sm:py-24 bg-blue-50/50">
+   574→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+   575→        <AnimatedSection className="text-center">
+   576→          <Badge variant="secondary" className="mb-4">Servicios</Badge>
+   577→          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+   578→            Fisioterapia a domicilio: todos los tratamientos en tu casa
+   579→          </h2>
+   580→          <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
+   581→            Cada tratamiento se realiza en la comodidad de tu hogar. Llego con equipamiento completo
+   582→            y un enfoque personalizado para que recuperes tu salud sin salir de casa.
+   583→          </p>
+   584→        </AnimatedSection>
+   585→
+   586→        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+   587→          {services.map((service, i) => (
+   588→            <AnimatedSection key={service.title} delay={i * 0.1}>
+   589→              <Card className="h-full transition-shadow hover:shadow-lg border-none shadow-md">
+   590→                <CardHeader>
+   591→                  <div className="flex size-12 items-center justify-center rounded-lg bg-primary/10">
+   592→                    <service.icon className="size-6 text-primary" />
+   593→                  </div>
+   594→                  <CardTitle className="text-lg mt-2">{service.title}</CardTitle>
+   595→                  <CardDescription className="text-sm leading-relaxed">
+   596→                    {service.description}
+   597→                  </CardDescription>
+   598→                </CardHeader>
+   599→                <CardContent>
+   600→                  <Separator className="mb-4" />
+   601→                  <ul className="space-y-2">
+   602→                    {service.benefits.map((b) => (
+   603→                      <li key={b} className="flex items-start gap-2 text-sm">
+   604→                        <CheckCircle className="mt-0.5 size-4 shrink-0 text-green-600" />
+   605→                        <span>{b}</span>
+   606→                      </li>
+   607→                    ))}
+   608→                  </ul>
+   609→                </CardContent>
+   610→              </Card>
+   611→            </AnimatedSection>
+   612→          ))}
+   613→        </div>
+   614→      </div>
+   615→    </section>
+   616→  )
+   617→}
+   618→
+   619→/* ═══════════════════════════════════════════════════
+   620→   5. PROBLEMAS QUE TRATO (PROBLEMS TREATED)
+   621→   ═══════════════════════════════════════════════════ */
+   622→function ProblemsSection() {
+   623→  const problems = [
+   624→    {
+   625→      icon: Bone,
+   626→      title: 'Dolor Lumbar',
+   627→      description: 'Agudo o crónico, tratamos la causa raíz del dolor en tu espalda baja.',
+   628→    },
+   629→    {
+   630→      icon: Activity,
+   631→      title: 'Hernias Discales',
+   632→      description: 'Rehabilitación conservadora para evitar o postergar la cirugía.',
+   633→    },
+   634→    {
+   635→      icon: MonitorSmartphone,
+   636→      title: 'Mala Postura',
+   637→      description: 'Corrección de la alineación corporal por hábitos cotidianos.',
+   638→    },
+   639→    {
+   640→      icon: Clock,
+   641→      title: 'Dolor por Trabajo en Oficina',
+   642→      description: 'Alivio del dolor causado por horas frente al computador.',
+   643→    },
+   644→    {
+   645→      icon: Dumbbell,
+   646→      title: 'Lesiones Deportivas',
+   647→      description: 'Esguinces, distensiones y recuperaciones post-quirúrgicas.',
+   648→    },
+   649→    {
+   650→      icon: Heart,
+   651→      title: 'Dolor Cervical',
+   652→      description: 'Tratamiento para tortícolis, cervicobraquialgia y tensión cervical.',
+   653→    },
+   654→  ]
+   655→
+   656→  return (
+   657→    <section className="py-16 sm:py-24 bg-white">
+   658→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+   659→        <AnimatedSection className="text-center">
+   660→          <Badge variant="secondary" className="mb-4">Problemas que Trato</Badge>
+   661→          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+   662→            ¿Sufres de alguno de estos problemas?
+   663→          </h2>
+   664→          <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
+   665→            No estás solo. Estos son los problemas más comunes que trato cada día a domicilio.
+   666→            La fisioterapia en tu casa puede ayudarte a superarlos sin salir de tu hogar.
+   667→          </p>
+   668→        </AnimatedSection>
+   669→
+   670→        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+   671→          {problems.map((problem, i) => (
+   672→            <AnimatedSection key={problem.title} delay={i * 0.08}>
+   673→              <div className="group flex items-start gap-4 rounded-xl border bg-white p-5 transition-all hover:border-primary/30 hover:shadow-md">
+   674→                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
+   675→                  <problem.icon className="size-6 text-primary" />
+   676→                </div>
+   677→                <div>
+   678→                  <h3 className="font-semibold">{problem.title}</h3>
+   679→                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+   680→                    {problem.description}
+   681→                  </p>
+   682→                </div>
+   683→              </div>
+   684→            </AnimatedSection>
+   685→          ))}
+   686→        </div>
+   687→      </div>
+   688→    </section>
+   689→  )
+   690→}
+   691→
+   692→/* ═══════════════════════════════════════════════════
+   693→   6. CÓMO FUNCIONA (HOW IT WORKS)
+   694→   ═══════════════════════════════════════════════════ */
+   695→function HowItWorksSection() {
+   696→  const steps = [
+   697→    {
+   698→      number: '01',
+   699→      icon: Stethoscope,
+   700→      title: 'Evaluación',
+   701→      description:
+   702→        'Agendamos una visita a tu hogar donde realizo una evaluación completa de tu condición física, postura y movilidad para entender la causa raíz de tu problema. Llego con todo el equipamiento necesario.',
+   703→    },
+   704→    {
+   705→      number: '02',
+   706→      icon: Heart,
+   707→      title: 'Tratamiento Personalizado',
+   708→      description:
+   709→        'Diseño un plan de tratamiento exclusivo para ti, combinando terapia manual, ejercicios terapéuticos y técnicas especializadas. Cada sesión dura mínimo 90 minutos — atención real, sin apuros. Todo se realiza en la comodidad de tu hogar con equipamiento profesional.',
+   710→    },
+   711→    {
+   712→      number: '03',
+   713→      icon: CheckCircle,
+   714→      title: 'Seguimiento',
+   715→      description:
+   716→        'Monitoreo continuo de tu progreso en cada visita a domicilio, ajustando el tratamiento según tu evolución. También puedes consultarme por WhatsApp entre sesiones.',
+   717→    },
+   718→  ]
+   719→
+   720→  return (
+   721→    <section id="como-funciona" className="py-16 sm:py-24 bg-gradient-to-br from-primary to-blue-900 text-white">
+   722→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+   723→        <AnimatedSection className="text-center">
+   724→          <Badge className="mb-4 border-white/30 bg-white/10 text-white hover:bg-white/20">
+   725→            Cómo Funciona
+   726→          </Badge>
+   727→          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+   728→            Recupera tu salud en tu propia casa en 3 pasos
+   729→          </h2>
+   730→          <p className="mt-4 mx-auto max-w-2xl text-blue-200">
+   731→            Un proceso claro y transparente: desde que me contactas hasta que llego a tu casa
+   732→            con todo el equipamiento necesario para tu tratamiento.
+   733→          </p>
+   734→        </AnimatedSection>
+   735→
+   736→        <div className="mt-12 grid gap-8 md:grid-cols-3">
+   737→          {steps.map((step, i) => (
+   738→            <AnimatedSection key={step.number} delay={i * 0.15}>
+   739→              <div className="relative flex flex-col items-center text-center">
+   740→                {/* Connector line (not on last) */}
+   741→                {i < steps.length - 1 && (
+   742→                  <div className="absolute top-12 left-[calc(50%+48px)] hidden h-0.5 w-[calc(100%-96px)] bg-white/20 md:block" />
+   743→                )}
+   744→                <div className="relative flex size-24 items-center justify-center rounded-full border-2 border-white/30 bg-white/10">
+   745→                  <step.icon className="size-10 text-white" />
+   746→                  <span className="absolute -top-2 -right-2 flex size-8 items-center justify-center rounded-full bg-yellow-400 text-sm font-bold text-primary">
+   747→                    {step.number}
+   748→                  </span>
+   749→                </div>
+   750→                <h3 className="mt-6 text-xl font-semibold">{step.title}</h3>
+   751→                <p className="mt-3 text-sm leading-relaxed text-blue-200 max-w-sm">
+   752→                  {step.description}
+   753→                </p>
+   754→              </div>
+   755→            </AnimatedSection>
+   756→          ))}
+   757→        </div>
+   758→
+   759→        <AnimatedSection delay={0.5} className="mt-12 text-center">
+   760→          <Button
+   761→            size="lg"
+   762→            className="bg-white text-primary hover:bg-blue-50 font-semibold text-base px-8 h-12"
+   763→            onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+   764→          >
+   765→            Comenzar Ahora
+   766→            <ArrowRight className="size-5 ml-1" />
+   767→          </Button>
+   768→        </AnimatedSection>
+   769→      </div>
+   770→    </section>
+   771→  )
+   772→}
+   773→
+   774→/* ═══════════════════════════════════════════════════
+   775→   7. TESTIMONIOS (TESTIMONIALS)
+   776→   ═══════════════════════════════════════════════════ */
+   777→function TestimonialsSection() {
+   778→  const testimonials = [
+   779→    {
+   780→      name: 'María García',
+   781→      age: 42,
+   782→      condition: 'Dolor lumbar crónico',
+   783→      quote:
+   784→        'Después de meses con dolor lumbar que no me dejaba ni dormir, el tratamiento a domicilio fue mi salvación. No tenía que trasladarme y en la primera semana ya sentía mejoría. Ahora puedo jugar con mis hijos sin dolor. ¡Ir a la clínica era un suplicio, tener al fisio en casa lo cambió todo!',
+   785→      rating: 5,
+   786→    },
+   787→    {
+   788→      name: 'Carlos Mendoza',
+   789→      age: 35,
+   790→      condition: 'Hernia discal',
+   791→      quote:
+   792→        'Me diagnosticaron una hernia discal y pensé que solo la cirugía me salvaría. Gracias al tratamiento conservador y personalizado en mi casa, evité la operación y volví a mi rutina normal. La comodidad de no salir de casa fue clave para ser constante con las sesiones.',
+   793→      rating: 5,
+   794→    },
+   795→    {
+   796→      name: 'Lucía Fernández',
+   797→      age: 28,
+   798→      condition: 'Lesión deportiva',
+   799→      quote:
+   800→        'Me lesione la rodilla jugando fútbol y estaba desesperada por volver a jugar. Que el fisioterapeuta venga a casa fue lo mejor — ahorraba tiempo y podía hacer las sesiones sin interrumpir mi rutina. Volví más fuerte que antes.',
+   801→      rating: 5,
+   802→    },
+   803→    {
+   804→      name: 'Roberto Sánchez',
+   805→      age: 55,
+   806→      condition: 'Dolor por trabajo en oficina',
+   807→      quote:
+   808→        'Llevaba años con dolores de cuello y espalda por estar tantas horas sentado. Lo genial fue que evaluó mi puesto de trabajo en casa y me enseñó ejercicios que hago en mi propia silla. Ya no necesito analgésicos.',
+   809→      rating: 4,
+   810→    },
+   811→  ]
+   812→
+   813→  return (
+   814→    <section id="testimonios" className="py-16 sm:py-24 bg-blue-50/50">
+   815→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+   816→        <AnimatedSection className="text-center">
+   817→          <Badge variant="secondary" className="mb-4">Testimonios</Badge>
+   818→          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+   819→            Lo que dicen mis pacientes
+   820→          </h2>
+   821→          <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
+   822→            Historias reales de personas que recuperaron su calidad de vida
+   823→            con fisioterapia a domicilio.
+   824→          </p>
+   825→        </AnimatedSection>
+   826→
+   827→        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+   828→          {testimonials.map((t, i) => (
+   829→            <AnimatedSection key={t.name} delay={i * 0.1}>
+   830→              <Card className="h-full border-none shadow-md">
+   831→                <CardContent className="pt-6">
+   832→                  {/* Stars */}
+   833→                  <div className="flex gap-1 mb-4">
+   834→                    {Array.from({ length: 5 }).map((_, idx) => (
+   835→                      <Star
+   836→                        key={idx}
+   837→                        className={`size-4 ${
+   838→                          idx < t.rating
+   839→                            ? 'fill-yellow-400 text-yellow-400'
+   840→                            : 'fill-muted text-muted'
+   841→                        }`}
+   842→                      />
+   843→                    ))}
+   844→                  </div>
+   845→                  {/* Quote */}
+   846→                  <blockquote className="text-sm leading-relaxed text-muted-foreground italic">
+   847→                    &ldquo;{t.quote}&rdquo;
+   848→                  </blockquote>
+   849→                  <Separator className="my-4" />
+   850→                  {/* Author */}
+   851→                  <div className="flex items-center gap-3">
+   852→                    <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
+   853→                      <span className="text-sm font-bold text-primary">
+   854→                        {t.name.charAt(0)}
+   855→                      </span>
+   856→                    </div>
+   857→                    <div>
+   858→                      <p className="text-sm font-semibold">{t.name}, {t.age} años</p>
+   859→                      <p className="text-xs text-muted-foreground">{t.condition}</p>
+   860→                    </div>
+   861→                  </div>
+   862→                </CardContent>
+   863→              </Card>
+   864→            </AnimatedSection>
+   865→          ))}
+   866→        </div>
+   867→      </div>
+   868→    </section>
+   869→  )
+   870→}
+   871→
+   872→/* ═══════════════════════════════════════════════════
+   873→   8. PLANES DE RECUPERACIÓN (PRICING)
+   874→   ═══════════════════════════════════════════════════ */
+   875→function PlansSection() {
+   876→  const plans = [
+   877→    {
+   878→      name: 'Evaluación y Tratamiento',
+   879→      price: 'S/ 180',
+   880→      originalPrice: null,
+   881→      period: 'sesión única',
+   882→      description: 'Sesión individual de evaluación y tratamiento a domicilio.',
+   883→      features: [
+   884→        'Evaluación fisioterapéutica completa',
+   885→        'Diagnóstico y plan de tratamiento',
+   886→        'Sesión de terapia de mínimo 90 minutos',
+   887→        'Plan de ejercicios para casa',
+   888→      ],
+   889→      highlighted: false,
+   890→      badge: null,
+   891→      badgeClass: '',
+   892→      borderClass: 'border',
+   893→      buttonClass: 'bg-primary hover:bg-primary/90 text-white',
+   894→    },
+   895→    {
+   896→      name: 'Paquete Recuperación',
+   897→      price: 'S/ 640',
+   898→      originalPrice: 'S/ 720',
+   899→      period: '4 sesiones',
+   900→      description: 'Plan completo de rehabilitación musculoesquelética.',
+   901→      features: [
+   902→        '4 sesiones de mínimo 90 minutos cada una',
+   903→        'Ahorro de S/ 80',
+   904→        'Seguimiento personalizado',
+   905→        'Plan terapéutico integral',
+   906→        'Consultas por WhatsApp',
+   907→      ],
+   908→      highlighted: true,
+   909→      badge: 'Más popular',
+   910→      badgeClass: 'bg-green-600',
+   911→      borderClass: 'border-2 border-green-600 shadow-xl',
+   912→      buttonClass: 'bg-green-600 hover:bg-green-700 text-white',
+   913→    },
+   914→    {
+   915→      name: 'Paquete Neuro',
+   916→      price: 'S/ 1,200',
+   917→      originalPrice: 'S/ 1,440',
+   918→      period: '8 sesiones',
+   919→      description: 'Especializado en neurorrehabilitación.',
+   920→      features: [
+   921→        '8 sesiones especializadas de mínimo 90 min',
+   922→        'Ahorro de S/ 240',
+   923→        'Enfoque en neurorrehabilitación',
+   924→        'Plan individualizado de neuroterapia',
+   925→        'Seguimiento continuo del progreso',
+   926→        'Consultas por WhatsApp',
+   927→      ],
+   928→      highlighted: true,
+   929→      badge: 'Especializado',
+   930→      badgeClass: 'bg-primary',
+   931→      borderClass: 'border-2 border-primary shadow-xl',
+   932→      buttonClass: 'bg-primary hover:bg-primary/90 text-white',
+   933→    },
+   934→  ]
+   935→
+   936→  return (
+   937→    <section id="planes" className="py-16 sm:py-24 bg-blue-50/50">
+   938→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+   939→        <AnimatedSection className="text-center">
+   940→          <Badge variant="secondary" className="mb-4">Planes de Recuperación</Badge>
+   941→          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+   942→            Precios claros, recuperación a domicilio
+   943→          </h2>
+   944→          <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
+   945→            Elige el plan que se adapte a tu recuperación. Sesiones a domicilio en toda Lima con horario flexible.
+   946→          </p>
+   947→          {/* 90 min highlight banner */}
+   948→          <div className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-primary/30 bg-primary/5 px-5 py-2.5">
+   949→            <Clock className="size-5 text-primary" />
+   950→            <span className="text-sm font-semibold text-primary">Todas las sesiones son de mínimo 90 minutos</span>
+   951→          </div>
+   952→        </AnimatedSection>
+   953→
+   954→        <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-6 lg:items-stretch">
+   955→          {plans.map((plan, i) => (
+   956→            <AnimatedSection key={plan.name} delay={i * 0.1} className="h-full">
+   957→              <Card className={`relative h-full flex flex-col ${plan.borderClass} ${plan.highlighted ? 'lg:-translate-y-2' : ''} transition-transform`}>
+   958→                {plan.badge && (
+   959→                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+   960→                    <span className={`inline-flex items-center rounded-full px-4 py-1 text-xs font-bold text-white shadow-md ${plan.badgeClass}`}>
+   961→                      {plan.badge}
+   962→                    </span>
+   963→                  </div>
+   964→                )}
+   965→                <CardHeader className="text-center pt-6">
+   966→                  <CardTitle className="text-xl">{plan.name}</CardTitle>
+   967→                  <CardDescription className="mt-1 min-h-[40px]">{plan.description}</CardDescription>
+   968→                  <div className="mt-4">
+   969→                    {plan.originalPrice && (
+   970→                      <span className="block text-sm text-muted-foreground line-through">
+   971→                        {plan.originalPrice}
+   972→                      </span>
+   973→                    )}
+   974→                    <span className="text-4xl font-extrabold text-primary">{plan.price}</span>
+   975→                    <span className="block text-sm text-muted-foreground mt-1">{plan.period}</span>
+   976→                  </div>
+   977→                </CardHeader>
+   978→                <CardContent className="flex-1 flex flex-col">
+   979→                  <Separator className="mb-4" />
+   980→                  <ul className="space-y-3 flex-1">
+   981→                    {plan.features.map((feature) => (
+   982→                      <li key={feature} className="flex items-start gap-2 text-sm">
+   983→                        <CheckCircle className={`mt-0.5 size-4 shrink-0 ${plan.highlighted ? 'text-green-600' : 'text-primary'}`} />
+   984→                        <span>{feature}</span>
+   985→                      </li>
+   986→                    ))}
+   987→                  </ul>
+   988→                  <Button
+   989→                    className={`mt-6 w-full ${plan.buttonClass}`}
+   990→                    onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+   991→                  >
+   992→                    <MessageCircle className="size-4 mr-1" />
+   993→                    Agenda por WhatsApp
+   994→                  </Button>
+   995→                </CardContent>
+   996→              </Card>
+   997→            </AnimatedSection>
+   998→          ))}
+   999→        </div>
+  1000→
+  1001→        <AnimatedSection delay={0.4} className="mt-10 text-center">
+  1002→          <p className="text-sm text-muted-foreground">
+  1003→            ¿No sabes qué plan elegir? Escríbeme por WhatsApp y te ayudo a elegir el ideal para ti.
+  1004→          </p>
+  1005→        </AnimatedSection>
+  1006→      </div>
+  1007→    </section>
+  1008→  )
+  1009→}
+  1010→
+  1011→/* ═══════════════════════════════════════════════════
+  1012→   9. COBERTURA Y HORARIO (DISTRICTS + SCHEDULE)
+  1013→   ═══════════════════════════════════════════════════ */
+  1014→function CoverageSection() {
+  1015→  const districts = [
+  1016→    'Surco', 'Miraflores', 'San Borja', 'San Isidro',
+  1017→    'Barranco', 'La Molina', 'Surquillo', 'Monterrico',
+  1018→    'Chacarilla', 'Camacho', 'La Florida', 'Santiago de Surco',
+  1019→  ]
+  1020→
+  1021→  return (
+  1022→    <section id="cobertura" className="py-16 sm:py-24 bg-white">
+  1023→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  1024→        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+  1025→          {/* Left — Text and schedule */}
+  1026→          <AnimatedSection>
+  1027→            <Badge variant="secondary" className="mb-4">Cobertura y Horario</Badge>
+  1028→            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+  1029→              Atención a domicilio en Lima
+  1030→            </h2>
+  1031→            <p className="mt-4 text-muted-foreground leading-relaxed">
+  1032→              Brindo atención fisioterapéutica a domicilio en los principales distritos de Lima.
+  1033→              Si tu distrito no aparece en la lista, escríbeme por WhatsApp para coordinar la visita.
+  1034→            </p>
+  1035→
+  1036→            {/* Schedule card */}
+  1037→            <div className="mt-6 rounded-xl border-2 border-primary/20 bg-primary/5 p-5">
+  1038→              <div className="flex items-start gap-3">
+  1039→                <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+  1040→                  <Clock className="size-5 text-primary" />
+  1041→                </div>
+  1042→                <div>
+  1043→                  <h3 className="font-semibold">Horario de atención</h3>
+  1044→                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+  1045→                    Lunes a domingo en las mañanas o tarde-noche, previa cita.
+  1046→                  </p>
+  1047→                </div>
+  1048→              </div>
+  1049→            </div>
+  1050→
+  1051→            <div className="mt-6">
+  1052→              <Button
+  1053→                size="lg"
+  1054→                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white"
+  1055→                onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+  1056→              >
+  1057→                <MessageCircle className="size-5 mr-1" />
+  1058→                Consultar disponibilidad
+  1059→              </Button>
+  1060→            </div>
+  1061→          </AnimatedSection>
+  1062→
+  1063→          {/* Right — Districts grid */}
+  1064→          <AnimatedSection delay={0.2}>
+  1065→            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+  1066→              {districts.map((district) => (
+  1067→                <div key={district} className="flex items-center gap-2 rounded-lg border bg-white p-3 text-sm shadow-sm transition-shadow hover:shadow-md">
+  1068→                  <MapPin className="size-4 text-primary shrink-0" />
+  1069→                  <span className="font-medium">{district}</span>
+  1070→                </div>
+  1071→              ))}
+  1072→            </div>
+  1073→            <p className="mt-4 text-xs text-muted-foreground text-center">
+  1074→              ¿Vives en otro distrito? Contáctame para coordinar.
+  1075→            </p>
+  1076→          </AnimatedSection>
+  1077→        </div>
+  1078→      </div>
+  1079→    </section>
+  1080→  )
+  1081→}
+  1082→
+  1083→/* ═══════════════════════════════════════════════════
+  1084→   10. LLAMADO A LA ACCIÓN (STRONG CTA)
+  1085→   ═══════════════════════════════════════════════════ */
+  1086→function CTASection() {
+  1087→  return (
+  1088→    <section className="py-16 sm:py-24 bg-white">
+  1089→      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  1090→        <AnimatedSection>
+  1091→          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-blue-700 p-8 sm:p-12 lg:p-16 text-white text-center">
+  1092→            {/* Decorative circles */}
+  1093→            <div className="absolute top-0 right-0 size-64 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/4" />
+  1094→            <div className="absolute bottom-0 left-0 size-48 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/4" />
+  1095→
+  1096→            <div className="relative">
+  1097→              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+  1098→                No dejes que el dolor limite tu vida — recibe fisioterapia en casa
+  1099→              </h2>
+  1100→              <p className="mt-4 mx-auto max-w-2xl text-lg text-blue-100 leading-relaxed">
+  1101→                Cada día que esperas, tu condición puede empeorar. Un fisioterapeuta profesional
+  1102→                va a tu casa con todo el equipamiento. Agenda hoy y da el primer paso hacia
+  1103→                una vida sin dolor, sin salir de tu hogar.
+  1104→              </p>
+  1105→              <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-yellow-300">
+  1106→                <div className="flex items-center gap-2">
+  1107→                  <Clock className="size-5" />
+  1108→                  <span className="text-sm font-medium">Lun a Dom: mañanas o tarde-noche (previa cita)</span>
+  1109→                </div>
+  1110→              </div>
+  1111→              <div className="mt-8 flex items-center justify-center">
+  1112→                <Button
+  1113→                  size="lg"
+  1114→                  className="bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-12"
+  1115→                  onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+  1116→                >
+  1117→                  <MessageCircle className="size-5 mr-1" />
+  1118→                  Agenda por WhatsApp
+  1119→                </Button>
+  1120→              </div>
+  1121→            </div>
+  1122→          </div>
+  1123→        </AnimatedSection>
+  1124→      </div>
+  1125→    </section>
+  1126→  )
+  1127→}
+  1128→
+  1129→
+  1130→
+  1131→/* ═══════════════════════════════════════════════════
+  1132→   10. FOOTER
+  1133→   ═══════════════════════════════════════════════════ */
+  1134→function Footer() {
+  1135→  return (
+  1136→    <footer className="bg-gray-900 text-gray-300">
+  1137→      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+  1138→        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+  1139→          {/* Brand */}
+  1140→          <div>
+  1141→            <div className="flex items-center gap-2 mb-4">
+  1142→              <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
+  1143→                <FisioHomeLogo className="size-5 text-white" />
+  1144→              </div>
+  1145→              <span className="text-xl font-bold text-white">FisioEnCasa</span>
+  1146→            </div>
+  1147→            <p className="text-sm leading-relaxed">
+  1148→              Fisioterapia profesional a domicilio en Lima. Recuperate en la comodidad de tu
+  1149→              hogar — el fisioterapeuta va a tu casa con todo el equipamiento necesario.
+  1150→            </p>
+  1151→          </div>
+  1152→
+  1153→          {/* Quick Links */}
+  1154→          <div>
+  1155→            <h3 className="mb-4 text-sm font-semibold text-white uppercase tracking-wider">
+  1156→              Enlaces Rápidos
+  1157→            </h3>
+  1158→            <ul className="space-y-2">
+  1159→              {NAV_LINKS.map((link) => (
+  1160→                <li key={link.href}>
+  1161→                  <a
+  1162→                    href={link.href}
+  1163→                    className="text-sm transition-colors hover:text-white"
+  1164→                  >
+  1165→                    {link.label}
+  1166→                  </a>
+  1167→                </li>
+  1168→              ))}
+  1169→            </ul>
+  1170→          </div>
+  1171→
+  1172→          {/* Services */}
+  1173→          <div>
+  1174→            <h3 className="mb-4 text-sm font-semibold text-white uppercase tracking-wider">
+  1175→              Servicios
+  1176→            </h3>
+  1177→            <ul className="space-y-2">
+  1178→              {[
+  1179→                'Dolor Lumbar',
+  1180→                'Corrección Postural',
+  1181→                'Rehabilitación Deportiva',
+  1182→                'Terapia a Domicilio',
+  1183→                'Hernias Discales',
+  1184→                'Dolor Cervical',
+  1185→              ].map((s) => (
+  1186→                <li key={s}>
+  1187→                  <a href="#servicios" className="text-sm transition-colors hover:text-white">
+  1188→                    {s}
+  1189→                  </a>
+  1190→                </li>
+  1191→              ))}
+  1192→            </ul>
+  1193→          </div>
+  1194→
+  1195→          {/* Contact */}
+  1196→          <div>
+  1197→            <h3 className="mb-4 text-sm font-semibold text-white uppercase tracking-wider">
+  1198→              Contacto
+  1199→            </h3>
+  1200→            <ul className="space-y-3">
+  1201→              <li className="flex items-start gap-3">
+  1202→                <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
+  1203→                <a href="tel:+51954670730" className="text-sm hover:text-white transition-colors">
+  1204→                  +51 954 670 730
+  1205→                </a>
+  1206→              </li>
+  1207→              <li className="flex items-start gap-3">
+  1208→                <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
+  1209→                <a href="mailto:contacto@fisioencasa.pe" className="text-sm hover:text-white transition-colors">
+  1210→                  contacto@fisioencasa.pe
+  1211→                </a>
+  1212→              </li>
+  1213→              <li className="flex items-start gap-3">
+  1214→                <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+  1215→                <span className="text-sm">Lima, Perú</span>
+  1216→              </li>
+  1217→              <li className="flex items-start gap-3">
+  1218→                <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
+  1219→                <span className="text-sm">Lun a Dom: mañanas o tarde-noche (previa cita)</span>
+  1220→              </li>
+  1221→            </ul>
+  1222→
+  1223→            {/* Social */}
+  1224→            <div className="mt-4 flex gap-3">
+  1225→              <a href="#" aria-label="Facebook" className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-primary hover:text-white">
+  1226→                <Facebook className="size-4" />
+  1227→              </a>
+  1228→              <a href="#" aria-label="Instagram" className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-primary hover:text-white">
+  1229→                <Instagram className="size-4" />
+  1230→              </a>
+  1231→              <a href="#" aria-label="LinkedIn" className="flex size-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-primary hover:text-white">
+  1232→                <Linkedin className="size-4" />
+  1233→              </a>
+  1234→            </div>
+  1235→          </div>
+  1236→        </div>
+  1237→
+  1238→        <Separator className="my-8 bg-gray-700" />
+  1239→
+  1240→        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+  1241→          <p className="text-sm text-gray-400">
+  1242→            © {new Date().getFullYear()} FisioEnCasa. Todos los derechos reservados.
+  1243→          </p>
+  1244→          <p className="text-sm text-gray-400">
+  1245→            Hecho con <Heart className="inline size-3 text-red-400" /> en Lima, Perú
+  1246→          </p>
+  1247→        </div>
+  1248→      </div>
+  1249→    </footer>
+  1250→  )
+  1251→}
+  1252→
+  1253→/* ═══════════════════════════════════════════════════
+  1254→   FLOATING WHATSAPP BUTTON
+  1255→   ═══════════════════════════════════════════════════ */
+  1256→function FloatingWhatsApp() {
+  1257→  return (
+  1258→    <a
+  1259→      href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
+  1260→      target="_blank"
+  1261→      rel="noopener noreferrer"
+  1262→      aria-label="Contactar por WhatsApp"
+  1263→      className="fixed bottom-6 right-6 z-50 flex size-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-transform hover:scale-110 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+  1264→    >
+  1265→      <MessageCircle className="size-7" />
+  1266→    </a>
+  1267→  )
+  1268→}
+  1269→
+  1270→/* ═══════════════════════════════════════════════════
+  1271→   MAIN PAGE
+  1272→   ═══════════════════════════════════════════════════ */
+  1273→export default function FisioEnCasaPage() {
+  1274→  return (
+  1275→    <div className="min-h-screen flex flex-col">
+  1276→      <Header />
+  1277→      <main className="flex-1">
+  1278→        <HeroSection />
+  1279→        <AboutSection />
+  1280→        <ServicesSection />
+  1281→        <ProblemsSection />
+  1282→        <HowItWorksSection />
+  1283→        <PlansSection />
+  1284→        <CoverageSection />
+  1285→        <TestimonialsSection />
+  1286→        <CTASection />
+  1287→      </main>
+  1288→      <Footer />
+  1289→      <FloatingWhatsApp />
+  1290→    </div>
+  1291→  )
+  1292→}
+  1293→
