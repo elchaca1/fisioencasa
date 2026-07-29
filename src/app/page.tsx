@@ -504,50 +504,51 @@ function AboutSection() {
    4. SERVICIOS (SERVICES)
    ═══════════════════════════════════════════════════ */
 function ServicesSection() {
+  // Para cambiar una imagen: reemplaza el archivo en /public/servicios/
+  // o edita la ruta en `image` abajo.
   const services = [
     {
-      icon: Home,
-      title: 'Fisioterapia a Domicilio',
+      image: '/servicios/servicio-neurologica.jpg',
+      title: 'Fisioterapia Neurológica',
       description:
-        'Tu tratamiento profesional sin salir de casa. Llego a tu hogar con todo el equipamiento necesario: camilla portátil, electroestimulación, bandas terapéuticas y más. Sin traslados, sin esperas.',
+        'Rehabilitación especializada para pacientes con secuelas de ACV, enfermedades neurodegenerativas (Parkinson, Alzheimer, ELA), parálisis cerebral y otras afecciones del sistema nervioso. Enfoque en recuperar movilidad, coordinación y autonomía.',
       benefits: [
-        'Sin trasladarte a una clínica',
-        'Equipamiento completo en tu casa',
-        'Horarios flexibles que se adaptan a ti',
-        'Atención en todos los distritos de Lima',
+        'Reeducación del movimiento y la marcha',
+        'Estimulación sensoriomotora',
+        'Prevención de complicaciones y retracciones',
       ],
     },
     {
-      icon: Bone,
-      title: 'Dolor Lumbar a Domicilio',
+      image: '/servicios/servicio-deportiva.jpg',
+      title: 'Fisioterapia Deportiva',
       description:
-        'Elimina el dolor que limita tu día a día sin moverte de casa. Con técnicas manuales y ejercicios terapéuticos, reducimos la inflamación y devolvemos la movilidad a tu espalda baja.',
-      benefits: [
-        'Reducción del dolor desde la primera sesión',
-        'Mejora en la movilidad y flexibilidad',
-        'Plan de ejercicios para hacer en casa',
-      ],
-    },
-    {
-      icon: Activity,
-      title: 'Corrección Postural en Casa',
-      description:
-        'Reeducamos tu postura en tu propio entorno. Evaluamos tu puesto de trabajo real en casa u oficina, y diseñamos un plan de corrección adaptado a tu espacio y rutina.',
-      benefits: [
-        'Evaluación de ergonomía en tu espacio real',
-        'Reduce dolores de cuello y espalda',
-        'Técnicas que aplicas en tu día a día',
-      ],
-    },
-    {
-      icon: Dumbbell,
-      title: 'Rehabilitación Deportiva a Casa',
-      description:
-        'Vuelve a tu deporte más fuerte que antes. Tratamiento integral para lesiones deportivas que se realiza en la comodidad de tu hogar, con seguimiento personalizado constante.',
+        'Readaptación y prevención de lesiones para deportistas de todos los niveles. Tratamiento integral desde la fase aguda hasta el retorno seguro al deporte, con evaluación funcional y plan de carga progresiva.',
       benefits: [
         'Recuperación acelerada de lesiones',
-        'Fortalecimiento preventivo personalizado',
-        'Plan de retorno seguro al deporte',
+        'Readaptación al deporte',
+        'Prevención de recaídas',
+      ],
+    },
+    {
+      image: '/servicios/servicio-traumatologica.jpg',
+      title: 'Fisioterapia Traumatológica',
+      description:
+        'Tratamiento de lesiones musculoesqueléticas: esguinces, desgarros, fracturas, artrosis, lumbalgias y cervicalgias. Recuperación de movilidad y alivio del dolor con terapia manual y ejercicio terapéutico.',
+      benefits: [
+        'Reducción del dolor e inflamación',
+        'Recuperación de movilidad y fuerza',
+        'Plan de ejercicios para casa',
+      ],
+    },
+    {
+      image: '/servicios/servicio-ocupacional.jpg',
+      title: 'Terapia Ocupacional',
+      description:
+        'Rehabilitación para recuperar la independencia en las actividades de la vida diaria. Adaptación del entorno, entrenamiento de destrezas finas y estrategias para pacientes con limitaciones físicas o cognitivas.',
+      benefits: [
+        'Autonomía en actividades diarias',
+        'Adaptación del entorno y ayudas técnicas',
+        'Estimulación cognitiva y motora fina',
       ],
     },
   ]
@@ -558,28 +559,35 @@ function ServicesSection() {
         <AnimatedSection className="text-center">
           <Badge variant="secondary" className="mb-4">Servicios</Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Fisioterapia a domicilio: todos los tratamientos en tu casa
+            Especialidades de fisioterapia a domicilio
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
-            Cada tratamiento se realiza en la comodidad de tu hogar. Llego con equipamiento completo
-            y un enfoque personalizado para que recuperes tu salud sin salir de casa.
+            Cada especialidad se brinda en la comodidad de tu hogar, con equipamiento profesional
+            y un plan de tratamiento personalizado según tu diagnóstico.
           </p>
         </AnimatedSection>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
-            <AnimatedSection key={service.title} delay={i * 0.1}>
-              <Card className="h-full transition-shadow hover:shadow-lg border-none shadow-md">
+            <AnimatedSection key={service.title} delay={i * 0.1} className="h-full">
+              <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg border-none shadow-md flex flex-col">
+                {/* Imagen de referencia — reemplazable desde /public/servicios/ */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
                 <CardHeader>
-                  <div className="flex size-12 items-center justify-center rounded-lg bg-primary/10">
-                    <service.icon className="size-6 text-primary" />
-                  </div>
                   <CardTitle className="text-lg mt-2">{service.title}</CardTitle>
                   <CardDescription className="text-sm leading-relaxed">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1">
                   <Separator className="mb-4" />
                   <ul className="space-y-2">
                     {service.benefits.map((b) => (
@@ -604,36 +612,14 @@ function ServicesSection() {
    ═══════════════════════════════════════════════════ */
 function ProblemsSection() {
   const problems = [
-    {
-      icon: Bone,
-      title: 'Dolor Lumbar',
-      description: 'Agudo o crónico, tratamos la causa raíz del dolor en tu espalda baja.',
-    },
-    {
-      icon: Activity,
-      title: 'Hernias Discales',
-      description: 'Rehabilitación conservadora para evitar o postergar la cirugía.',
-    },
-    {
-      icon: MonitorSmartphone,
-      title: 'Mala Postura',
-      description: 'Corrección de la alineación corporal por hábitos cotidianos.',
-    },
-    {
-      icon: Clock,
-      title: 'Dolor por Trabajo en Oficina',
-      description: 'Alivio del dolor causado por horas frente al computador.',
-    },
-    {
-      icon: Dumbbell,
-      title: 'Lesiones Deportivas',
-      description: 'Esguinces, distensiones y recuperaciones post-quirúrgicas.',
-    },
-    {
-      icon: Heart,
-      title: 'Dolor Cervical',
-      description: 'Tratamiento para tortícolis, cervicobraquialgia y tensión cervical.',
-    },
+    'Sobrecarga muscular y contracturas',
+    'Lumbalgias, Cervicalgias y Dorsalgias',
+    'Esguinces, desgarros y fracturas',
+    'Debilidad muscular y readaptación al deporte',
+    'Condromalacia Rotuliana, Gonartrosis',
+    'Lesiones neurológicas post ACV',
+    'Enfermedades neurodegenerativas',
+    'Artrosis y artritis',
   ]
 
   return (
@@ -645,24 +631,19 @@ function ProblemsSection() {
             ¿Sufres de alguno de estos problemas?
           </h2>
           <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
-            No estás solo. Estos son los problemas más comunes que trato cada día a domicilio.
-            La fisioterapia en tu casa puede ayudarte a superarlos sin salir de tu hogar.
+            Trato a diario estas patologías a domicilio. Si tu diagnóstico no aparece en la lista,
+            escríbeme por WhatsApp y te oriento personalmente.
           </p>
         </AnimatedSection>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {problems.map((problem, i) => (
-            <AnimatedSection key={problem.title} delay={i * 0.08}>
-              <div className="group flex items-start gap-4 rounded-xl border bg-white p-5 transition-all hover:border-primary/30 hover:shadow-md">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
-                  <problem.icon className="size-6 text-primary" />
+            <AnimatedSection key={problem} delay={i * 0.06}>
+              <div className="group flex items-start gap-3 rounded-xl border bg-white p-5 transition-all hover:border-primary/30 hover:shadow-md h-full">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
+                  <CheckCircle className="size-5 text-primary" />
                 </div>
-                <div>
-                  <h3 className="font-semibold">{problem.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                    {problem.description}
-                  </p>
-                </div>
+                <h3 className="font-semibold text-sm sm:text-base leading-snug pt-1.5">{problem}</h3>
               </div>
             </AnimatedSection>
           ))}
