@@ -21,7 +21,7 @@ IMAGES = {
 
 # T NEURO está girada 90° en sentido horario -> rotar 270° (= -90°) para enderezar
 ROTATIONS = {
-    "T NEURO.png": Image.ROTATE_270,
+    "T NEURO.png": Image.ROTATE_90,
     "T DEPOR.png": None,
     "T TRAUMA.png": None,
     "T OCUPACIONAL.png": None,
