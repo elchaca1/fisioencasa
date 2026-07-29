@@ -508,7 +508,7 @@ function ServicesSection() {
   // o edita la ruta en `image` abajo.
   const services = [
     {
-      image: '/servicios/servicio-neurologica.jpg',
+      image: '/servicios/servicio-neurologica.png',
       title: 'Fisioterapia Neurológica',
       description:
         'Rehabilitación especializada para pacientes con secuelas de ACV, enfermedades neurodegenerativas (Parkinson, Alzheimer, ELA), parálisis cerebral y otras afecciones del sistema nervioso. Enfoque en recuperar movilidad, coordinación y autonomía.',
@@ -519,7 +519,7 @@ function ServicesSection() {
       ],
     },
     {
-      image: '/servicios/servicio-deportiva.jpg',
+      image: '/servicios/servicio-deportiva.png',
       title: 'Fisioterapia Deportiva',
       description:
         'Readaptación y prevención de lesiones para deportistas de todos los niveles. Tratamiento integral desde la fase aguda hasta el retorno seguro al deporte, con evaluación funcional y plan de carga progresiva.',
@@ -530,7 +530,7 @@ function ServicesSection() {
       ],
     },
     {
-      image: '/servicios/servicio-traumatologica.jpg',
+      image: '/servicios/servicio-traumatologica.png',
       title: 'Fisioterapia Traumatológica',
       description:
         'Tratamiento de lesiones musculoesqueléticas: esguinces, desgarros, fracturas, artrosis, lumbalgias y cervicalgias. Recuperación de movilidad y alivio del dolor con terapia manual y ejercicio terapéutico.',
@@ -541,7 +541,7 @@ function ServicesSection() {
       ],
     },
     {
-      image: '/servicios/servicio-ocupacional.jpg',
+      image: '/servicios/servicio-ocupacional.png',
       title: 'Terapia Ocupacional',
       description:
         'Rehabilitación para recuperar la independencia en las actividades de la vida diaria. Adaptación del entorno, entrenamiento de destrezas finas y estrategias para pacientes con limitaciones físicas o cognitivas.',
