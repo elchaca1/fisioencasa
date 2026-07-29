@@ -65,13 +65,13 @@ const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 function FisioHomeLogo({ className = 'size-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* House outline */}
-      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="currentColor" opacity="0.3" />
-      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      {/* Spine / body line inside house */}
-      <path d="M16 14v2m0 2v2m0 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      {/* Small cross/plus for health */}
-      <circle cx="16" cy="12" r="1.5" fill="currentColor" />
+      {/* House outline — azul marino */}
+      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="#1e3a8a" opacity="0.18" />
+      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="#1e3a8a" strokeWidth="1.6" strokeLinejoin="round" />
+      {/* Spine / body line — verde */}
+      <path d="M16 14v2m0 2v2m0 2v2" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" />
+      {/* Pulse dot for health — amarillo (acento) */}
+      <circle cx="16" cy="12" r="1.6" fill="#facc15" />
     </svg>
   )
 }
@@ -133,10 +133,10 @@ function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-2">
-          <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
+          <div className="flex size-9 items-center justify-center rounded-lg bg-blue-950">
             <FisioHomeLogo className="size-5 text-white" />
           </div>
-          <span className="text-lg sm:text-xl font-bold text-primary">FisioEnCasa</span>
+          <span className="text-lg sm:text-xl font-bold text-blue-950">FisioEnCasa</span>
         </a>
 
         {/* Desktop Nav */}
@@ -173,10 +173,10 @@ function Header() {
           <SheetContent side="right" className="w-72">
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-primary">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-blue-950">
                   <FisioHomeLogo className="size-4 text-white" />
                 </div>
-                <span className="text-lg font-bold text-primary">FisioEnCasa</span>
+                <span className="text-lg font-bold text-blue-950">FisioEnCasa</span>
               </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4 pt-4" aria-label="Navegación móvil">
@@ -247,7 +247,7 @@ function HeroSection() {
               transition={{ duration: 0.5 }}
             >
               <Badge className="mb-4 border-white/30 bg-white/15 text-white text-xs px-3 py-1 sm:text-sm sm:px-4 sm:py-1.5 hover:bg-white/25 leading-snug">
-                🎓 Neurorrehabilitación · Deportiva · Salud Ocupacional
+                🏠 Atención profesional en la comodidad de tu hogar
               </Badge>
             </motion.div>
 
@@ -1096,7 +1096,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex size-9 items-center justify-center rounded-lg bg-primary">
+              <div className="flex size-9 items-center justify-center rounded-lg bg-blue-950">
                 <FisioHomeLogo className="size-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">FisioEnCasa</span>
