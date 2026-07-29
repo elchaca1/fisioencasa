@@ -251,6 +251,17 @@ function HeroSection() {
               </Badge>
             </motion.div>
 
+            {/* 90 min highlight badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Badge className="mb-6 border-yellow-400 bg-yellow-400/20 text-yellow-100 text-sm px-4 py-1.5 hover:bg-yellow-400/30">
+                ⏱️ Sesiones de mínimo 90 minutos — atención real, sin apuros
+              </Badge>
+            </motion.div>
+
             {/* Main headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -269,7 +280,7 @@ function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100 sm:text-xl"
             >
-              Recupera tu movilidad sin salir de casa. Atención en las mañanas.
+              Recupera tu movilidad sin salir de casa. Atención en las mañanas. Sesiones de <span className="font-semibold text-white">mínimo 90 minutos</span> con tratamiento integral.
             </motion.p>
 
             {/* CTA buttons */}
@@ -296,6 +307,12 @@ function HeroSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="mt-10 flex flex-wrap gap-x-6 gap-y-3"
             >
+              <div className="flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
+                  <Clock className="size-4 text-yellow-300" />
+                </div>
+                <span className="text-sm font-medium text-blue-100">Sesiones de mínimo 90 min</span>
+              </div>
               <div className="flex items-center gap-2">
                 <div className="flex size-8 items-center justify-center rounded-full bg-white/10">
                   <Award className="size-4 text-yellow-300" />
@@ -689,7 +706,7 @@ function HowItWorksSection() {
       icon: Heart,
       title: 'Tratamiento Personalizado',
       description:
-        'Diseño un plan de tratamiento exclusivo para ti, combinando terapia manual, ejercicios terapéuticos y técnicas especializadas. Todo se realiza en la comodidad de tu hogar con equipamiento profesional.',
+        'Diseño un plan de tratamiento exclusivo para ti, combinando terapia manual, ejercicios terapéuticos y técnicas especializadas. Cada sesión dura mínimo 90 minutos — atención real, sin apuros. Todo se realiza en la comodidad de tu hogar con equipamiento profesional.',
     },
     {
       number: '03',
@@ -866,7 +883,7 @@ function PlansSection() {
       features: [
         'Evaluación fisioterapéutica completa',
         'Diagnóstico y plan de tratamiento',
-        'Sesión de terapia de 60 minutos',
+        'Sesión de terapia de mínimo 90 minutos',
         'Plan de ejercicios para casa',
       ],
       highlighted: false,
@@ -882,7 +899,7 @@ function PlansSection() {
       period: '4 sesiones',
       description: 'Plan completo de rehabilitación musculoesquelética.',
       features: [
-        '4 sesiones de tratamiento',
+        '4 sesiones de mínimo 90 minutos cada una',
         'Ahorro de S/ 80',
         'Seguimiento personalizado',
         'Plan terapéutico integral',
@@ -901,7 +918,7 @@ function PlansSection() {
       period: '8 sesiones',
       description: 'Especializado en neurorrehabilitación.',
       features: [
-        '8 sesiones especializadas',
+        '8 sesiones especializadas de mínimo 90 min',
         'Ahorro de S/ 240',
         'Enfoque en neurorrehabilitación',
         'Plan individualizado de neuroterapia',
@@ -927,6 +944,11 @@ function PlansSection() {
           <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
             Elige el plan que se adapte a tu recuperación. Sesiones a domicilio en toda Lima con horario flexible.
           </p>
+          {/* 90 min highlight banner */}
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-primary/30 bg-primary/5 px-5 py-2.5">
+            <Clock className="size-5 text-primary" />
+            <span className="text-sm font-semibold text-primary">Todas las sesiones son de mínimo 90 minutos</span>
+          </div>
         </AnimatedSection>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-6 lg:items-stretch">
