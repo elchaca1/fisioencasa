@@ -111,9 +111,12 @@ const NAV_LINKS = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#sobre-mi', label: 'Sobre Mí' },
   { href: '#servicios', label: 'Servicios' },
+  { href: '#planes', label: 'Planes' },
   { href: '#como-funciona', label: 'Cómo Funciona' },
   { href: '#testimonios', label: 'Testimonios' },
 ]
+
+const WHATSAPP_MESSAGE = 'Hola, me interesa el paquete de 4/8 sesiones. ¿Hay disponibilidad para las mañanas?'
 
 /* ═══════════════════════════════════════════════════
    1. HEADER / NAVIGATION
@@ -152,7 +155,7 @@ function Header() {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <Button
-            onClick={() => openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}
+            onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
             className="bg-green-600 hover:bg-green-700 text-white"
           >
             <MessageCircle className="size-4" />
@@ -195,7 +198,7 @@ function Header() {
                 <Button
                   onClick={() => {
                     handleNavClick()
-                    openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')
+                    openWhatsApp(WHATSAPP_MESSAGE)
                   }}
                   className="w-full bg-green-600 hover:bg-green-700 text-white"
                 >
@@ -243,8 +246,8 @@ function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Badge className="mb-6 border-yellow-400 bg-yellow-400/20 text-yellow-100 text-sm px-4 py-1.5 hover:bg-yellow-400/30">
-                🔥 Las primeras 10 citas del mes tienen 20% de descuento
+              <Badge className="mb-6 border-white/30 bg-white/15 text-white text-sm px-4 py-1.5 hover:bg-white/25">
+                🎓 Especialización en Neurorrehabilitación, Terapia Deportiva y Salud Ocupacional
               </Badge>
             </motion.div>
 
@@ -253,10 +256,10 @@ function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-[3.5rem]"
+              className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl"
             >
-              ¿Dolor de espalda? El fisioterapeuta{' '}
-              <span className="text-yellow-300">va a tu casa en Lima</span>
+              Fisioterapeuta a domicilio en Lima.{' '}
+              <span className="text-yellow-300">Especialista en Neurorrehabilitación, Fisioterapia Deportiva y Salud Ocupacional.</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -266,8 +269,7 @@ function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-blue-100 sm:text-xl"
             >
-              Fisioterapeuta profesional que llega a la puerta de tu casa en Lima. Olvídate de traslados,
-              esperas y molestias — recibe tu tratamiento en la comodidad de tu hogar con equipamiento completo.
+              Recupera tu movilidad sin salir de casa. Atención en las mañanas.
             </motion.p>
 
             {/* CTA buttons */}
@@ -280,7 +282,7 @@ function HeroSection() {
               <Button
                 size="lg"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-13 sm:w-auto shadow-lg shadow-green-600/20"
-                onClick={() => openWhatsApp('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}
+                onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
               >
                 <MessageCircle className="size-5 mr-1" />
                 Agenda por WhatsApp
@@ -741,7 +743,7 @@ function HowItWorksSection() {
           <Button
             size="lg"
             className="bg-white text-primary hover:bg-blue-50 font-semibold text-base px-8 h-12"
-            onClick={() => openWhatsApp('Hola, quiero empezar con la evaluación de fisioterapia a domicilio')}
+            onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
           >
             Comenzar Ahora
             <ArrowRight className="size-5 ml-1" />
@@ -851,7 +853,213 @@ function TestimonialsSection() {
 }
 
 /* ═══════════════════════════════════════════════════
-   8. LLAMADO A LA ACCIÓN (STRONG CTA)
+   8. PLANES DE RECUPERACIÓN (PRICING)
+   ═══════════════════════════════════════════════════ */
+function PlansSection() {
+  const plans = [
+    {
+      name: 'Evaluación y Tratamiento',
+      price: 'S/ 180',
+      originalPrice: null,
+      period: 'sesión única',
+      description: 'Sesión individual de evaluación y tratamiento a domicilio.',
+      features: [
+        'Evaluación fisioterapéutica completa',
+        'Diagnóstico y plan de tratamiento',
+        'Sesión de terapia de 60 minutos',
+        'Plan de ejercicios para casa',
+      ],
+      highlighted: false,
+      badge: null,
+      badgeClass: '',
+      borderClass: 'border',
+      buttonClass: 'bg-primary hover:bg-primary/90 text-white',
+    },
+    {
+      name: 'Paquete Recuperación',
+      price: 'S/ 640',
+      originalPrice: 'S/ 720',
+      period: '4 sesiones',
+      description: 'Plan completo de rehabilitación musculoesquelética.',
+      features: [
+        '4 sesiones de tratamiento',
+        'Ahorro de S/ 80',
+        'Seguimiento personalizado',
+        'Plan terapéutico integral',
+        'Consultas por WhatsApp',
+      ],
+      highlighted: true,
+      badge: 'Más popular',
+      badgeClass: 'bg-green-600',
+      borderClass: 'border-2 border-green-600 shadow-xl',
+      buttonClass: 'bg-green-600 hover:bg-green-700 text-white',
+    },
+    {
+      name: 'Paquete Neuro',
+      price: 'S/ 1,200',
+      originalPrice: 'S/ 1,440',
+      period: '8 sesiones',
+      description: 'Especializado en neurorrehabilitación.',
+      features: [
+        '8 sesiones especializadas',
+        'Ahorro de S/ 240',
+        'Enfoque en neurorrehabilitación',
+        'Plan individualizado de neuroterapia',
+        'Seguimiento continuo del progreso',
+        'Consultas por WhatsApp',
+      ],
+      highlighted: true,
+      badge: 'Especializado',
+      badgeClass: 'bg-primary',
+      borderClass: 'border-2 border-primary shadow-xl',
+      buttonClass: 'bg-primary hover:bg-primary/90 text-white',
+    },
+  ]
+
+  return (
+    <section id="planes" className="py-16 sm:py-24 bg-blue-50/50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="text-center">
+          <Badge variant="secondary" className="mb-4">Planes de Recuperación</Badge>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Precios claros, recuperación a domicilio
+          </h2>
+          <p className="mt-4 mx-auto max-w-2xl text-muted-foreground">
+            Elige el plan que se adapte a tu recuperación. Sesiones a domicilio en toda Lima con horario flexible.
+          </p>
+        </AnimatedSection>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-6 lg:items-stretch">
+          {plans.map((plan, i) => (
+            <AnimatedSection key={plan.name} delay={i * 0.1} className="h-full">
+              <Card className={`relative h-full flex flex-col ${plan.borderClass} ${plan.highlighted ? 'lg:-translate-y-2' : ''} transition-transform`}>
+                {plan.badge && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                    <span className={`inline-flex items-center rounded-full px-4 py-1 text-xs font-bold text-white shadow-md ${plan.badgeClass}`}>
+                      {plan.badge}
+                    </span>
+                  </div>
+                )}
+                <CardHeader className="text-center pt-6">
+                  <CardTitle className="text-xl">{plan.name}</CardTitle>
+                  <CardDescription className="mt-1 min-h-[40px]">{plan.description}</CardDescription>
+                  <div className="mt-4">
+                    {plan.originalPrice && (
+                      <span className="block text-sm text-muted-foreground line-through">
+                        {plan.originalPrice}
+                      </span>
+                    )}
+                    <span className="text-4xl font-extrabold text-primary">{plan.price}</span>
+                    <span className="block text-sm text-muted-foreground mt-1">{plan.period}</span>
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col">
+                  <Separator className="mb-4" />
+                  <ul className="space-y-3 flex-1">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2 text-sm">
+                        <CheckCircle className={`mt-0.5 size-4 shrink-0 ${plan.highlighted ? 'text-green-600' : 'text-primary'}`} />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className={`mt-6 w-full ${plan.buttonClass}`}
+                    onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+                  >
+                    <MessageCircle className="size-4 mr-1" />
+                    Agenda por WhatsApp
+                  </Button>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <AnimatedSection delay={0.4} className="mt-10 text-center">
+          <p className="text-sm text-muted-foreground">
+            ¿No sabes qué plan elegir? Escríbeme por WhatsApp y te ayudo a elegir el ideal para ti.
+          </p>
+        </AnimatedSection>
+      </div>
+    </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════
+   9. COBERTURA Y HORARIO (DISTRICTS + SCHEDULE)
+   ═══════════════════════════════════════════════════ */
+function CoverageSection() {
+  const districts = [
+    'Surco', 'Miraflores', 'San Borja', 'San Isidro',
+    'Barranco', 'La Molina', 'Surquillo', 'Monterrico',
+    'Chacarilla', 'Camacho', 'La Florida', 'Santiago de Surco',
+  ]
+
+  return (
+    <section id="cobertura" className="py-16 sm:py-24 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          {/* Left — Text and schedule */}
+          <AnimatedSection>
+            <Badge variant="secondary" className="mb-4">Cobertura y Horario</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Atención a domicilio en Lima
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Brindo atención fisioterapéutica a domicilio en los principales distritos de Lima.
+              Si tu distrito no aparece en la lista, escríbeme por WhatsApp para coordinar la visita.
+            </p>
+
+            {/* Schedule card */}
+            <div className="mt-6 rounded-xl border-2 border-primary/20 bg-primary/5 p-5">
+              <div className="flex items-start gap-3">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                  <Clock className="size-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">Horario de atención</h3>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                    Lunes a domingo en las mañanas o tarde-noche, previa cita.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white"
+                onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
+              >
+                <MessageCircle className="size-5 mr-1" />
+                Consultar disponibilidad
+              </Button>
+            </div>
+          </AnimatedSection>
+
+          {/* Right — Districts grid */}
+          <AnimatedSection delay={0.2}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {districts.map((district) => (
+                <div key={district} className="flex items-center gap-2 rounded-lg border bg-white p-3 text-sm shadow-sm transition-shadow hover:shadow-md">
+                  <MapPin className="size-4 text-primary shrink-0" />
+                  <span className="font-medium">{district}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground text-center">
+              ¿Vives en otro distrito? Contáctame para coordinar.
+            </p>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════
+   10. LLAMADO A LA ACCIÓN (STRONG CTA)
    ═══════════════════════════════════════════════════ */
 function CTASection() {
   return (
@@ -872,17 +1080,17 @@ function CTASection() {
                 va a tu casa con todo el equipamiento. Agenda hoy y da el primer paso hacia
                 una vida sin dolor, sin salir de tu hogar.
               </p>
-              <div className="mt-4 flex items-center justify-center gap-2 text-yellow-300">
-                <Clock className="size-5" />
-                <span className="text-sm font-medium">
-                  Cupos limitados — solo 10 citas con descuento este mes
-                </span>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-yellow-300">
+                <div className="flex items-center gap-2">
+                  <Clock className="size-5" />
+                  <span className="text-sm font-medium">Lun a Dom: mañanas o tarde-noche (previa cita)</span>
+                </div>
               </div>
               <div className="mt-8 flex items-center justify-center">
                 <Button
                   size="lg"
                   className="bg-green-600 hover:bg-green-700 text-white font-semibold text-base px-8 h-12"
-                  onClick={() => openWhatsApp('Hola, quiero agendar una cita con el descuento del 20%')}
+                  onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
                 >
                   <MessageCircle className="size-5 mr-1" />
                   Agenda por WhatsApp
@@ -986,7 +1194,7 @@ function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span className="text-sm">Lun - Sáb: 8:00 AM - 7:00 PM</span>
+                <span className="text-sm">Lun a Dom: mañanas o tarde-noche (previa cita)</span>
               </li>
             </ul>
 
@@ -1026,7 +1234,7 @@ function Footer() {
 function FloatingWhatsApp() {
   return (
     <a
-      href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent('Hola, me gustaría agendar una cita de fisioterapia a domicilio')}`}
+      href={`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
@@ -1050,6 +1258,8 @@ export default function FisioEnCasaPage() {
         <ServicesSection />
         <ProblemsSection />
         <HowItWorksSection />
+        <PlansSection />
+        <CoverageSection />
         <TestimonialsSection />
         <CTASection />
       </main>

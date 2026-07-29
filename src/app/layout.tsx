@@ -14,26 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fisioterapeuta a Domicilio en Lima | Dolor Lumbar | FisioEnCasa",
+  title: "Fisioterapeuta a Domicilio en Lima | Neurorrehabilitación, Deportiva y Salud Ocupacional | FisioEnCasa",
   description:
-    "Fisioterapeuta a domicilio en Lima. Tratamiento de dolor lumbar, hernias discales, corrección postural y rehabilitación deportiva. Agenda tu cita hoy.",
+    "Fisioterapeuta a domicilio en Lima. Especialista en Neurorrehabilitación, Fisioterapia Deportiva y Salud Ocupacional. Recupera tu movilidad sin salir de casa. Atención en las mañanas.",
   keywords: [
     "fisioterapia a domicilio Lima",
-    "dolor lumbar tratamiento Lima",
+    "neurorrehabilitación Lima",
+    "fisioterapia deportiva Lima",
+    "salud ocupacional Lima",
     "fisioterapeuta en casa Lima",
-    "rehabilitación deportiva Lima",
-    "corrección postural Lima",
+    "rehabilitación neurológica Lima",
     "terapia física Lima",
-    "hernia discal tratamiento Lima",
+    "fisioterapeuta Surco Miraflores San Borja",
   ],
   authors: [{ name: "FisioEnCasa" }],
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Fisioterapeuta a Domicilio en Lima | FisioEnCasa",
+    title: "Fisioterapeuta a Domicilio en Lima | Neurorrehabilitación y Salud Ocupacional | FisioEnCasa",
     description:
-      "Recupera tu movilidad sin salir de casa. Tratamiento profesional de dolor lumbar, hernias discales y corrección postural a domicilio en Lima.",
+      "Recupera tu movilidad sin salir de casa. Especialista en Neurorrehabilitación, Fisioterapia Deportiva y Salud Ocupacional. Atención a domicilio en Lima.",
     url: "https://fisioencasa.pe",
     siteName: "FisioEnCasa",
     type: "website",
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fisioterapeuta a Domicilio en Lima | FisioEnCasa",
     description:
-      "Recupera tu movilidad sin salir de casa. Fisioterapia profesional a domicilio en Lima.",
+      "Especialista en Neurorrehabilitación, Fisioterapia Deportiva y Salud Ocupacional. Atención a domicilio en Lima.",
   },
 };
 
