@@ -65,13 +65,13 @@ const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 function FisioHomeLogo({ className = 'size-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* House outline — azul marino */}
-      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="#1e3a8a" opacity="0.18" />
-      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="#1e3a8a" strokeWidth="1.6" strokeLinejoin="round" />
-      {/* Spine / body line — verde */}
-      <path d="M16 14v2m0 2v2m0 2v2" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" />
-      {/* Pulse dot for health — amarillo (acento) */}
-      <circle cx="16" cy="12" r="1.6" fill="#facc15" />
+      {/* House outline */}
+      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="currentColor" opacity="0.3" />
+      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* Spine / body line inside house */}
+      <path d="M16 14v2m0 2v2m0 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      {/* Small cross/plus for health */}
+      <circle cx="16" cy="12" r="1.5" fill="currentColor" />
     </svg>
   )
 }
