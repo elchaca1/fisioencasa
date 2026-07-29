@@ -219,7 +219,7 @@ function Header() {
    ═══════════════════════════════════════════════════ */
 function HeroSection() {
   return (
-    <section id="inicio" className="relative overflow-hidden bg-gradient-to-br from-primary via-blue-700 to-blue-900 text-white">
+    <section id="inicio" className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white">
       {/* Animated decorative background */}
       <div className="absolute inset-0">
         {/* Dot pattern overlay */}
