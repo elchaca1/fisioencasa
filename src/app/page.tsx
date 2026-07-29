@@ -133,9 +133,8 @@ function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-2">
-          <div className="flex size-9 items-center justify-center rounded-lg bg-blue-950">
-            <FisioHomeLogo className="size-5 text-white" />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Logo FisioEnCasa" className="size-9 rounded-lg object-cover" />
           <span className="text-lg sm:text-xl font-bold text-blue-950">FisioEnCasa</span>
         </a>
 
@@ -173,9 +172,8 @@ function Header() {
           <SheetContent side="right" className="w-72">
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-blue-950">
-                  <FisioHomeLogo className="size-4 text-white" />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="Logo FisioEnCasa" className="size-8 rounded-lg object-cover" />
                 <span className="text-lg font-bold text-blue-950">FisioEnCasa</span>
               </SheetTitle>
             </SheetHeader>
@@ -1096,9 +1094,8 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex size-9 items-center justify-center rounded-lg bg-blue-950">
-                <FisioHomeLogo className="size-5 text-white" />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="Logo FisioEnCasa" className="size-9 rounded-lg object-cover" />
               <span className="text-xl font-bold text-white">FisioEnCasa</span>
             </div>
             <p className="text-sm leading-relaxed">
