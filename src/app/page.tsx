@@ -61,21 +61,6 @@ import {
 const WHATSAPP_NUMBER = '51954670730'
 const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
-/* ─────────── Logo Component ─────────── */
-function FisioHomeLogo({ className = 'size-5' }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* House outline */}
-      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" fill="currentColor" opacity="0.3" />
-      <path d="M16 4L3 14h3v12h8v-8h4v8h8V14h3L16 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-      {/* Spine / body line inside house */}
-      <path d="M16 14v2m0 2v2m0 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      {/* Small cross/plus for health */}
-      <circle cx="16" cy="12" r="1.5" fill="currentColor" />
-    </svg>
-  )
-}
-
 function openWhatsApp(message: string) {
   window.open(`${WHATSAPP_BASE_URL}?text=${encodeURIComponent(message)}`, '_blank')
 }
@@ -130,16 +115,21 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a href="#inicio" className="flex items-center gap-2">
-          {/* Next.js Image: sirve automáticamente WebP/AVIF y responsive */}
-          <Image src="/logo.png" alt="Logo FisioEnCasa" width={36} height={36} className="rounded-lg" priority />
-          <span className="text-lg sm:text-xl font-bold text-blue-950">FisioEnCasa</span>
+        <a href="#inicio" className="flex items-center" aria-label="FisioEnCasa, ir al inicio">
+          <Image
+            src="/fisioencasa-logo-horizontal.webp"
+            alt="FisioEnCasa — Fisioterapia a domicilio"
+            width={920}
+            height={220}
+            className="h-11 w-auto sm:h-14"
+            priority
+          />
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegación principal">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -152,7 +142,7 @@ function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <Button
             onClick={() => openWhatsApp(WHATSAPP_MESSAGE)}
             className="bg-green-600 hover:bg-green-700 text-white"
@@ -165,15 +155,20 @@ function Header() {
         {/* Mobile Hamburger */}
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Abrir menú">
+            <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Abrir menú">
               <Menu className="size-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-72">
             <SheetHeader>
-              <SheetTitle className="flex items-center gap-2">
-                <Image src="/logo.png" alt="Logo FisioEnCasa" width={32} height={32} className="rounded-lg" />
-                <span className="text-lg font-bold text-blue-950">FisioEnCasa</span>
+              <SheetTitle>
+                <Image
+                  src="/fisioencasa-logo-horizontal.webp"
+                  alt="FisioEnCasa — Fisioterapia a domicilio"
+                  width={920}
+                  height={220}
+                  className="h-12 w-auto"
+                />
               </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4 pt-4" aria-label="Navegación móvil">
@@ -1092,9 +1087,20 @@ function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Image src="/logo.png" alt="Logo FisioEnCasa" width={36} height={36} className="rounded-lg" />
-              <span className="text-xl font-bold text-white">FisioEnCasa</span>
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-white p-1.5 shadow-sm">
+                <Image
+                  src="/fisioencasa-mark.webp"
+                  alt=""
+                  width={124}
+                  height={124}
+                  className="size-full object-contain"
+                />
+              </div>
+              <div>
+                <span className="block text-xl font-bold text-white">FisioEnCasa</span>
+                <span className="block text-xs text-gray-400">Fisioterapia a domicilio</span>
+              </div>
             </div>
             <p className="text-sm leading-relaxed">
               Fisioterapia profesional a domicilio en Lima. Recuperate en la comodidad de tu
