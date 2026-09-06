@@ -119,7 +119,7 @@ function Header() {
         {/* Logo */}
         <a href="#inicio" className="flex items-center" aria-label="FisioEnCasa, ir al inicio">
           <Image
-            src="/fisioencasa-logo-horizontal.webp"
+            src="/fisioencasa-wordmark.svg"
             alt="FisioEnCasa — Fisioterapia a domicilio"
             width={920}
             height={220}
@@ -163,7 +163,7 @@ function Header() {
             <SheetHeader>
               <SheetTitle>
                 <Image
-                  src="/fisioencasa-logo-horizontal.webp"
+                  src="/fisioencasa-wordmark.svg"
                   alt="FisioEnCasa — Fisioterapia a domicilio"
                   width={920}
                   height={220}
