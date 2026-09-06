@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" role="img" aria-labelledby="title desc">
+  <title id="title">FisioEnCasa</title>
+  <desc id="desc">FisioEnCasa, fisioterapia a domicilio</desc>
+  <g fill="none" stroke="#1B5D78" stroke-linecap="square" stroke-linejoin="round">
+    <path stroke-width="26" d="M42 164V84c0-30 24-54 54-54h76"/>
+    <path stroke-width="26" d="M111 91h61"/>
+  </g>
+  <text x="220" y="116" fill="#102A43" font-family="Arial Rounded MT Bold, Nunito, Trebuchet MS, sans-serif" font-size="74" font-weight="800" letter-spacing="1.5">FISIOENCASA</text>
+  <text x="224" y="160" fill="#526777" font-family="Nunito, Trebuchet MS, sans-serif" font-size="27" font-weight="600" letter-spacing="1.2">FISIOTERAPIA A DOMICILIO</text>
+</svg>
