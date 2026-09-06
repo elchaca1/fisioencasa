@@ -123,7 +123,7 @@ function Header() {
             alt="FisioEnCasa — Fisioterapia a domicilio"
             width={920}
             height={220}
-            className="h-11 w-auto sm:h-14"
+            className="h-14 w-auto sm:h-16"
             priority
           />
         </a>
@@ -167,7 +167,7 @@ function Header() {
                   alt="FisioEnCasa — Fisioterapia a domicilio"
                   width={920}
                   height={220}
-                  className="h-12 w-auto"
+                  className="h-14 w-auto"
                 />
               </SheetTitle>
             </SheetHeader>
